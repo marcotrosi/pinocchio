@@ -1,0 +1,2 @@
+# pinocchio
+string lib
