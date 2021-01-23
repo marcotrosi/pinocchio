@@ -14,14 +14,15 @@ string strfmt(const string s, ...);
 string lower(string s);
 string upper(string s);
 
-void printv(int n, ...);
+void   printv(int n, ...);
+size_t len(string s);
 string joinv(int n, ...);
 string gluev(char *g, int n, ...);
 string repv(string s, unsigned int n, string g);
 string rev(string s);
-size_t len(string s);
 string appendv(string *s, int n, ...);
 string prependv(string *s, int n, ...);
+string subv(string s, int i, int j);
 
 #define BUFFERSIZE 1024
 
@@ -32,12 +33,13 @@ string prependv(string *s, int n, ...);
 #define OPT_ARG_0(opt) (opt)
 #define OPT_ARG_1(opt,arg) (arg)
 
-#define print(...) printv(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define join(...) joinv(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define glue(g,...) gluev(g, COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define rep(s,n,...) repv(s, n, OPT_ARG(COUNT_ARGS(__VA_ARGS__), NULL, ##__VA_ARGS__))
-#define append(s,...) appendv(&(s), COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define print(...)     printv(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define join(...)      joinv(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define glue(g,...)    gluev(g, COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define rep(s,n,...)   repv(s, n, OPT_ARG(COUNT_ARGS(__VA_ARGS__), NULL, ##__VA_ARGS__))
+#define append(s,...)  appendv(&(s), COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
 #define prepend(s,...) prependv(&(s), COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define sub(s,i,...)   subv(s,i,OPT_ARG(COUNT_ARGS(__VA_ARGS__), -1, ##__VA_ARGS__))
 
 #endif // PINOCCHIO_H
 

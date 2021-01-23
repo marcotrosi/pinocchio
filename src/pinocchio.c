@@ -75,7 +75,6 @@ string.unpack (fmt, s [, pos])
 tostring()
 tonumber()
 
-string.sub (s, i [, j])
 string.find (s, pattern [, init [, plain]])
 string.gmatch (s, pattern [, init])
 string.gsub (s, pattern, repl [, n])
@@ -87,6 +86,7 @@ string.lower (s)
 string.upper (s)
 string.rep (s, n [, sep])
 string.reverse (s)
+string.sub (s, i [, j])
 
 >>> */
 /* Python <<<
@@ -576,6 +576,89 @@ string prependv(string *s, int n, ...) // <<<
 
    va_end(args);
    free(Tmp);
+
+   return Address;
+} // >>>
+
+string subv(string s, int i, int j) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   size_t StrLen = strlen(s);
+
+   int L = 0;
+   int R = 0;
+
+   /*
+  -9-8-7-6-5-4-3-2-1   neg i and j
+   1 2 3 4 5 6 7 8 9   pos i and j
+
+   a b c d e f g h i   StrLen = 9
+
+   0 1 2 3 4 5 6 7 8   array index
+   */
+
+   if( i < 0 )
+   {
+      L = StrLen + i + 1;
+   }
+   else
+   {
+      L = i;
+   }
+
+   if( j < 0 )
+   {
+      R = StrLen + j + 1;
+   }
+   else
+   {
+      R = j;
+   }
+
+   if( L < 1 )
+   {
+      L = 1;
+   }
+
+   if( R > StrLen )
+   {
+      R = StrLen;
+   }
+
+   string Address = NULL;
+
+   if( L > R )
+   {
+      Address = (string)malloc(sizeof(char));
+      if(Address == NULL)
+      {
+         return NULL;
+      }
+      Address[0] = '\0';
+      return Address;
+   }
+
+   Address = (string)malloc(((R-L)+2)*sizeof(char));
+   if(Address == NULL)
+   {
+      return NULL;
+   }
+
+   int WriteIndex = 0;
+   L--;
+   R--;
+
+   for(int ReadIndex=L; ReadIndex <= R; ReadIndex++)
+   {
+      Address[WriteIndex] = s[ReadIndex];
+      WriteIndex++;
+   }
+
+   Address[WriteIndex] = '\0';
 
    return Address;
 } // >>>
