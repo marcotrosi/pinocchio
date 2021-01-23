@@ -8,6 +8,59 @@
 https://en.cppreference.com/w/c/string/byte
 https://pubs.opengroup.org/onlinepubs/7908799/xsh/strings.h.html
 
+strcpy copies one string to another
+strncpy copies a certain amount of characters from one string to another
+strcat concatenates two strings
+strncat concatenates a certain amount of characters of two strings
+strxfrm transform a string so that strcmp would produce the same result as strcoll
+strlen returns the length of a given string
+strcmp compares two strings
+strncmp compares a certain number of characters from two strings
+strcoll compares two strings in accordance to the current locale
+strchr finds the first occurrence of a character
+strrchr finds the last occurrence of a character
+strspn returns the length of the maximum initial segment that consists of only the characters found in another byte string
+strcspn returns the length of the maximum initial segment that consists of only the characters not found in another byte string
+strpbrk finds the first location of any character from a set of separators
+strstr finds the first occurrence of a substring of characters
+strtok finds the next token in a byte string
+memchr searches an array for the first occurrence of a character
+memcmp compares two buffers
+memset fills a buffer with a character
+memcpy copies one buffer to another
+memmove moves one buffer to another
+strerror returns a text version of a given error code 
+
+isalnum checks if a character is alphanumeric
+isalpha checks if a character is alphabetic
+islower checks if a character is lowercase
+isupper checks if a character is an uppercase character
+isdigit checks if a character is a digit
+isxdigit checks if a character is a hexadecimal character
+iscntrl checks if a character is a control character
+isgraph checks if a character is a graphical character
+isspace checks if a character is a space character
+isblank checks if a character is a blank character
+isprint checks if a character is a printing character
+ispunct checks if a character is a punctuation character
+tolower converts a character to lowercase
+toupper converts a character to uppercase 
+
+int    bcmp(const void *, const void *, size_t);
+void   bcopy(const void *, void *, size_t);
+void   bzero(void *, size_t);
+int    ffs(int);
+char   *index(const char *, int);
+char   *rindex(const char *, int);
+int    strcasecmp(const char *, const char *);
+int    strncasecmp(const char *, const char *, size_t);
+
+atof converts a byte string to a floating point value
+atoi atol atoll (C++11) converts a byte string to an integer value
+strtol strtoll (C++11) converts a byte string to an integer value
+strtoul strtoull (C++11) converts a byte string to an unsigned integer value
+strtof strtod strtold converts a byte string to a floating point value
+
 >>> */
 /* Lua <<<
 
@@ -16,22 +69,24 @@ https://www.lua.org/manual/5.4/manual.html#6.4
 string.byte (s [, i [, j]])
 string.char (···)
 string.dump (function [, strip])
-string.find (s, pattern [, init [, plain]])
-string.format (formatstring, ···)
-string.gmatch (s, pattern [, init])
-string.gsub (s, pattern, repl [, n])
-string.len (s)
-string.lower (s)
-string.match (s, pattern [, init])
 string.pack (fmt, v1, v2, ···)
 string.packsize (fmt)
-string.rep (s, n [, sep])
-string.reverse (s)
-string.sub (s, i [, j])
 string.unpack (fmt, s [, pos])
-string.upper (s)
 tostring()
 tonumber()
+
+string.sub (s, i [, j])
+string.find (s, pattern [, init [, plain]])
+string.gmatch (s, pattern [, init])
+string.gsub (s, pattern, repl [, n])
+string.match (s, pattern [, init])
+
+string.format (formatstring, ···)
+string.len (s)
+string.lower (s)
+string.upper (s)
+string.rep (s, n [, sep])
+string.reverse (s)
 
 >>> */
 /* Python <<<
@@ -209,6 +264,7 @@ string joinv(int n, ...) // <<<
 
    if(Address == NULL)
    {
+      va_end(args);
       return NULL;
    }
 
@@ -223,8 +279,7 @@ string joinv(int n, ...) // <<<
 		if(Arg != NULL)
 		{
          strcpy(&(Address[WriteIndex]), Arg);
-         StrLen = strlen(Arg);
-         WriteIndex = WriteIndex + StrLen; 
+         WriteIndex = WriteIndex + strlen(Arg); 
 		}
 	}
 
@@ -281,6 +336,246 @@ string gluev(char *g, int n, ...) // <<<
 	}
 
    va_end(args);
+
+   return Address;
+} // >>>
+
+string lower(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   for(int i=0; s[i] != '\0'; i++)
+   {
+      s[i] = tolower(s[i]);
+   }
+
+   return s;
+} // >>>
+
+string upper(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   for(int i=0; s[i] != '\0'; i++)
+   {
+      s[i] = toupper(s[i]);
+   }
+
+   return s;
+} // >>>
+
+string repv(string s, unsigned int n, string g) // <<<
+{
+   size_t StrLen = 0u;
+   size_t GlueLen = 0;
+   string Glue = NULL;
+
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   StrLen = strlen(s);
+
+   if(g != NULL)
+   {
+      GlueLen = strlen(g);
+      Glue = g;
+   }
+   else
+   {
+      Glue = "";
+   }
+
+   if(n == 0u)
+   {
+      StrLen = 0u;
+   }
+   else
+   {
+      StrLen = (n*StrLen)+((n-1)*GlueLen)+1;
+   }
+
+   string Address = (string)malloc(StrLen*sizeof(char));
+
+   if(Address == NULL)
+   {
+      return NULL;
+   }
+
+   if(n == 0u)
+   {
+      return Address;
+   }
+
+   unsigned int WriteIndex = 0u;
+   StrLen = strlen(s);
+   
+	for(int i=0; i < (n-1); i++)
+	{
+      strcpy(&(Address[WriteIndex]), s);
+      WriteIndex = WriteIndex + StrLen;
+      strcpy(&(Address[WriteIndex]), Glue);
+      WriteIndex = WriteIndex + GlueLen; 
+	}
+   strcpy(&(Address[WriteIndex]), s);
+   WriteIndex = WriteIndex + StrLen;
+
+   return Address;
+} // >>>
+
+string rev(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   size_t StrLen = strlen(s);
+
+   for(int i=0; i < (StrLen/2) ; i++)
+   {
+      char Tmp = s[i];
+      s[i] = s[StrLen-i-1];
+      s[StrLen-i-1] = Tmp;
+   }
+
+   return s;
+} // >>>
+
+size_t len(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return 0;
+   }
+   return strlen(s);
+} // >>>
+
+string appendv(string *s, int n, ...) // <<<
+{
+   va_list args;
+
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   if(n == 0u)
+   {
+      return *s;
+   }
+
+   va_start(args, n);
+
+   size_t StrLen = strlen(*s);
+
+	for(int i=0; i < n; i++)
+	{
+      char *Arg = va_arg(args, char *);
+
+		if(Arg != NULL)
+		{
+         StrLen = StrLen + strlen(Arg);
+		}
+	}
+
+   StrLen++; // for null terminator
+
+   string Address = (string)realloc(*s, StrLen*sizeof(char));
+
+   if(Address == NULL)
+   {
+      va_end(args);
+      return *s; // because realloc keeps ptr as it was on fail
+   }
+   *s = Address; // write potential new address back
+
+   va_start(args, n);
+
+   unsigned int WriteIndex = strlen(*s);
+
+	for(int i=0; i < n; i++)
+	{
+      char *Arg = va_arg(args, char *);
+
+		if(Arg != NULL)
+		{
+         strcpy(&(Address[WriteIndex]), Arg);
+         WriteIndex = WriteIndex + strlen(Arg); 
+		}
+	}
+
+   va_end(args);
+
+   return Address;
+} // >>>
+
+string prependv(string *s, int n, ...) // <<<
+{
+   va_list args;
+
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   if(n == 0u)
+   {
+      return *s;
+   }
+
+   va_start(args, n);
+
+   size_t StrLen = strlen(*s);
+
+	for(int i=0; i < n; i++)
+	{
+      char *Arg = va_arg(args, char *);
+
+		if(Arg != NULL)
+		{
+         StrLen = StrLen + strlen(Arg);
+		}
+	}
+
+   StrLen++; // for null terminator
+
+   string Address = (string)realloc(*s, StrLen*sizeof(char));
+
+   if(Address == NULL)
+   {
+      va_end(args);
+      return *s; // because realloc keeps ptr as it was on fail
+   }
+   *s = Address; // write potential new address back
+
+   string Tmp = str(*s);
+   va_start(args, n);
+
+   unsigned int WriteIndex = 0;
+
+	for(int i=0; i < n; i++)
+	{
+      char *Arg = va_arg(args, char *);
+
+		if(Arg != NULL)
+		{
+         strcpy(&(Address[WriteIndex]), Arg);
+         WriteIndex = WriteIndex + strlen(Arg); 
+		}
+	}
+
+   strcpy(&(Address[WriteIndex]), Tmp);
+
+   va_end(args);
+   free(Tmp);
 
    return Address;
 } // >>>

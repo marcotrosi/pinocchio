@@ -1,1 +1,3 @@
-demo
+# Xmake cache
+.xmake/
+build/
