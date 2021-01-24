@@ -93,17 +93,30 @@ string.sub (s, i [, j])
 
 https://docs.python.org/3/library/stdtypes.html#string-methods
 
+str.center(width[, fillchar])
+
+str.ljust(width[, fillchar])
+str.rjust(width[, fillchar])
+str.count(sub[, start[, end]])
+str.find(sub[, start[, end]])
+str.index(sub[, start[, end]])
+str.partition(sep)
+str.removeprefix(prefix, /)
+str.removesuffix(suffix, /)
+str.replace(old, new[, count])
+str.split(sep=None, maxsplit=-1)
+str.splitlines([keepends])
+str.strip([chars])
+str.lstrip([chars])
+str.rstrip([chars])
+
 str.capitalize()
 str.casefold()
-str.center(width[, fillchar])
-str.count(sub[, start[, end]])
 str.encode(encoding="utf-8", errors="strict")
 str.endswith(suffix[, start[, end]])
 str.expandtabs(tabsize=8)
-str.find(sub[, start[, end]])
 str.format(*args, **kwargs)
 str.format_map(mapping)
-str.index(sub[, start[, end]])
 str.isalnum()
 str.isalpha()
 str.isascii()
@@ -117,23 +130,14 @@ str.isspace()
 str.istitle()
 str.isupper()
 str.join(iterable)
-str.ljust(width[, fillchar])
 str.lower()
-str.lstrip([chars])
-str.partition(sep)
-str.removeprefix(prefix, /)
-str.removesuffix(suffix, /)
-str.replace(old, new[, count])
 str.rfind(sub[, start[, end]])
 str.rindex(sub[, start[, end]])
 str.rjust(width[, fillchar])
 str.rpartition(sep)
 str.rsplit(sep=None, maxsplit=-1)
 str.rstrip([chars])
-str.split(sep=None, maxsplit=-1)
-str.splitlines([keepends])
 str.startswith(prefix[, start[, end]])
-str.strip([chars])
 str.swapcase()
 str.title()
 str.translate(table)
@@ -210,7 +214,66 @@ string strfmt(const string s, ...) // <<<
    return Address;
 } // >>>
 
-void printv(int n, ...) // <<<
+string lower(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   for(int i=0; s[i] != '\0'; i++)
+   {
+      s[i] = tolower(s[i]);
+   }
+
+   return s;
+} // >>>
+
+string upper(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   for(int i=0; s[i] != '\0'; i++)
+   {
+      s[i] = toupper(s[i]);
+   }
+
+   return s;
+} // >>>
+
+string rev(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   size_t StrLen = strlen(s);
+
+   for(int i=0; i < (StrLen/2) ; i++)
+   {
+      char Tmp = s[i];
+      s[i] = s[StrLen-i-1];
+      s[StrLen-i-1] = Tmp;
+   }
+
+   return s;
+} // >>>
+
+size_t len(string s) // <<<
+{
+   if(s == NULL)
+   {
+      return 0;
+   }
+   return strlen(s);
+} // >>>
+
+// internal functions used by macros
+void int_print(int n, ...) // <<<
 {
    va_list args;
 
@@ -240,7 +303,7 @@ void printv(int n, ...) // <<<
    printf("\n");
 } // >>>
 
-string joinv(int n, ...) // <<<
+string int_join(int n, ...) // <<<
 {
    va_list args;
 
@@ -288,7 +351,7 @@ string joinv(int n, ...) // <<<
    return Address;
 } // >>>
 
-string gluev(char *g, int n, ...) // <<<
+string int_glue(char *g, int n, ...) // <<<
 {
    va_list args;
 
@@ -340,37 +403,7 @@ string gluev(char *g, int n, ...) // <<<
    return Address;
 } // >>>
 
-string lower(string s) // <<<
-{
-   if(s == NULL)
-   {
-      return NULL;
-   }
-
-   for(int i=0; s[i] != '\0'; i++)
-   {
-      s[i] = tolower(s[i]);
-   }
-
-   return s;
-} // >>>
-
-string upper(string s) // <<<
-{
-   if(s == NULL)
-   {
-      return NULL;
-   }
-
-   for(int i=0; s[i] != '\0'; i++)
-   {
-      s[i] = toupper(s[i]);
-   }
-
-   return s;
-} // >>>
-
-string repv(string s, unsigned int n, string g) // <<<
+string int_rep(string s, unsigned int n, string g) // <<<
 {
    size_t StrLen = 0u;
    size_t GlueLen = 0;
@@ -430,35 +463,7 @@ string repv(string s, unsigned int n, string g) // <<<
    return Address;
 } // >>>
 
-string rev(string s) // <<<
-{
-   if(s == NULL)
-   {
-      return NULL;
-   }
-
-   size_t StrLen = strlen(s);
-
-   for(int i=0; i < (StrLen/2) ; i++)
-   {
-      char Tmp = s[i];
-      s[i] = s[StrLen-i-1];
-      s[StrLen-i-1] = Tmp;
-   }
-
-   return s;
-} // >>>
-
-size_t len(string s) // <<<
-{
-   if(s == NULL)
-   {
-      return 0;
-   }
-   return strlen(s);
-} // >>>
-
-string appendv(string *s, int n, ...) // <<<
+string int_append(string *s, int n, ...) // <<<
 {
    va_list args;
 
@@ -517,7 +522,7 @@ string appendv(string *s, int n, ...) // <<<
    return Address;
 } // >>>
 
-string prependv(string *s, int n, ...) // <<<
+string int_prepend(string *s, int n, ...) // <<<
 {
    va_list args;
 
@@ -580,7 +585,7 @@ string prependv(string *s, int n, ...) // <<<
    return Address;
 } // >>>
 
-string subv(string s, int i, int j) // <<<
+string int_sub(string s, int i, int j) // <<<
 {
    if(s == NULL)
    {
@@ -659,6 +664,118 @@ string subv(string s, int i, int j) // <<<
    }
 
    Address[WriteIndex] = '\0';
+
+   return Address;
+} // >>>
+
+string int_center(string s, unsigned int width, char c) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   string Address = (string)malloc((width+1)*sizeof(char));
+
+   if(Address == NULL)
+   {
+      return NULL;
+   }
+
+   size_t StrLen = strlen(s);
+
+   if( width <= StrLen )
+   {
+       strncpy(Address, s, width);
+       return Address;
+   }
+
+   unsigned int LPad = (width - StrLen)/2u;
+   unsigned int RPad = width - StrLen - LPad;
+
+   for(int i=0; i < LPad ; i++)
+   {
+      Address[i] = c;
+   }
+
+   strcpy(&(Address[LPad]), s);
+
+   for(int i=0; i < RPad ; i++)
+   {
+      Address[LPad+StrLen+i] = c;
+   }
+
+   Address[width] = '\0';
+
+   return Address;
+} // >>>
+
+string int_left(string s, unsigned int width, char c) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   string Address = (string)malloc((width+1)*sizeof(char));
+
+   if(Address == NULL)
+   {
+      return NULL;
+   }
+
+   size_t StrLen = strlen(s);
+
+   if( width <= StrLen )
+   {
+       strncpy(Address, s, width);
+       return Address;
+   }
+
+   strcpy(Address, s);
+
+   for(int i=StrLen; i < width ; i++)
+   {
+      Address[i] = c;
+   }
+
+   Address[width] = '\0';
+
+   return Address;
+} // >>>
+
+string int_right(string s, unsigned int width, char c) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   string Address = (string)malloc((width+1)*sizeof(char));
+
+   if(Address == NULL)
+   {
+      return NULL;
+   }
+
+   size_t StrLen = strlen(s);
+
+   if( width <= StrLen )
+   {
+       strncpy(Address, &(s[StrLen-width]), width);
+       return Address;
+   }
+
+   unsigned int LPad = width - StrLen;
+
+   for(int i=0; i < LPad ; i++)
+   {
+      Address[i] = c;
+   }
+
+   strcpy(&(Address[LPad]), s);
+
+   Address[width] = '\0';
 
    return Address;
 } // >>>
