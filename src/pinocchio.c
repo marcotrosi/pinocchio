@@ -94,9 +94,15 @@ string.sub (s, i [, j])
 https://docs.python.org/3/library/stdtypes.html#string-methods
 
 str.center(width[, fillchar])
-
 str.ljust(width[, fillchar])
 str.rjust(width[, fillchar])
+str.lower()
+str.upper()
+str.join(iterable)
+
+str.strip([chars])
+str.lstrip([chars])
+str.rstrip([chars])
 str.count(sub[, start[, end]])
 str.find(sub[, start[, end]])
 str.index(sub[, start[, end]])
@@ -106,9 +112,6 @@ str.removesuffix(suffix, /)
 str.replace(old, new[, count])
 str.split(sep=None, maxsplit=-1)
 str.splitlines([keepends])
-str.strip([chars])
-str.lstrip([chars])
-str.rstrip([chars])
 
 str.capitalize()
 str.casefold()
@@ -117,6 +120,16 @@ str.endswith(suffix[, start[, end]])
 str.expandtabs(tabsize=8)
 str.format(*args, **kwargs)
 str.format_map(mapping)
+str.rfind(sub[, start[, end]])
+str.rindex(sub[, start[, end]])
+str.rpartition(sep)
+str.rsplit(sep=None, maxsplit=-1)
+str.rstrip([chars])
+str.startswith(prefix[, start[, end]])
+str.swapcase()
+str.title()
+str.translate(table)
+str.zfill(width)¶
 str.isalnum()
 str.isalpha()
 str.isascii()
@@ -129,20 +142,6 @@ str.isprintable()
 str.isspace()
 str.istitle()
 str.isupper()
-str.join(iterable)
-str.lower()
-str.rfind(sub[, start[, end]])
-str.rindex(sub[, start[, end]])
-str.rjust(width[, fillchar])
-str.rpartition(sep)
-str.rsplit(sep=None, maxsplit=-1)
-str.rstrip([chars])
-str.startswith(prefix[, start[, end]])
-str.swapcase()
-str.title()
-str.translate(table)
-str.upper()
-str.zfill(width)¶
 
 >>> */
 /* aRT <<<
@@ -272,6 +271,91 @@ size_t len(string s) // <<<
    return strlen(s);
 } // >>>
 
+string i2s(signed long long int x) // <<<
+{
+   string Buffer = (string)malloc(BUFFERSIZE*sizeof(char));
+
+   if(Buffer == NULL)
+   {
+      return NULL;
+   }
+
+   snprintf(Buffer, BUFFERSIZE, "%lld", x);
+
+   return Buffer;
+} // >>>
+
+string u2s(unsigned long long int x) // <<<
+{
+   string Buffer = (string)malloc(BUFFERSIZE*sizeof(char));
+
+   if(Buffer == NULL)
+   {
+      return NULL;
+   }
+
+   snprintf(Buffer, BUFFERSIZE, "%llu", x);
+
+   return Buffer;
+} // >>>
+
+string f2s(long double x) // <<<
+{
+   string Buffer = (string)malloc(BUFFERSIZE*sizeof(char));
+
+   if(Buffer == NULL)
+   {
+      return NULL;
+   }
+
+   snprintf(Buffer, BUFFERSIZE, "%LF", x);
+
+   return Buffer;
+} // >>>
+
+string c2s(char x) // <<<
+{
+   string Buffer = (string)malloc(2*sizeof(char));
+
+   if(Buffer == NULL)
+   {
+      return NULL;
+   }
+
+   snprintf(Buffer, 2, "%c", x);
+
+   return Buffer;
+} // >>>
+
+string b2s(bool x) // <<<
+{
+   string Buffer = (string)malloc(6*sizeof(char));
+
+   if(Buffer == NULL)
+   {
+      return NULL;
+   }
+
+   snprintf(Buffer, 6, "%s", (x)?"true":"false");
+
+   return Buffer;
+} // >>>
+
+string x2s(long long int x) // <<<
+{
+   string Buffer = (string)malloc(20*sizeof(char));
+
+   if(Buffer == NULL)
+   {
+      return NULL;
+   }
+
+   snprintf(Buffer, 20, "0x%llX", x);
+
+   return Buffer;
+} // >>>
+
+
 // internal functions used by macros
 void int_print(int n, ...) // <<<
 {
@@ -291,6 +375,29 @@ void int_print(int n, ...) // <<<
 		{
 			printf("%s", Arg);
 		}
+
+      if(i != (n-1))
+      {
+         printf("\t");
+      }
+	}
+
+   va_end(args);
+
+   printf("\n");
+} // >>>
+
+void int_iprint(int n, ...) // <<<
+{
+   va_list args;
+
+   va_start(args, n);
+
+	for(int i=0; i < n; i++)
+	{
+      signed int Arg = va_arg(args, signed int);
+
+      printf("%d", Arg);
 
       if(i != (n-1))
       {
@@ -778,6 +885,20 @@ string int_right(string s, unsigned int width, char c) // <<<
    Address[width] = '\0';
 
    return Address;
+} // >>>
+
+string int_a2s(void *x) // <<<
+{
+   string Buffer = (string)malloc(20*sizeof(char));
+
+   if(Buffer == NULL)
+   {
+      return NULL;
+   }
+
+   snprintf(Buffer, 20, "%p", x);
+
+   return Buffer;
 } // >>>
 
 // vim: fmr=<<<,>>> fdm=marker

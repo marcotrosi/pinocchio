@@ -37,6 +37,28 @@ int main(void)
    print(J);
    print(K);
    print(L);
+   iprint(5,0,-2,1323,282474);
+   string M = i2s(-456747844848);
+   print(M);
+   string N = u2s(94567478448480);
+   print(N);
+   string O = f2s(9456747.8448480);
+   print(O);
+   string P = c2s('x');
+   print(P);
+   string Q = b2s(false);
+   print(Q);
+   string R = p2s(A);
+   print(R);
+   string S = a2s(A);
+   print(S);
+   string T = x2s(-1);
+   print(T);
+
+   printf("%lli\n", s2lli(M));
+   printf("%llu\n", s2llu(N));
+   printf("%LF\n" , s2ld(O) );
+   printf("%c\n"  , P[0]    );
 
    free(A);
    free(B);
@@ -50,6 +72,14 @@ int main(void)
    free(J);
    free(K);
    free(L);
+   free(M);
+   free(N);
+   free(O);
+   free(P);
+   free(Q);
+   free(R);
+   free(S);
+   free(T);
 
    return 0;
 }

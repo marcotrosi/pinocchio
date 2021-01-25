@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -18,6 +19,7 @@ size_t len(string s);
 
 // internal functions used by macros
 void   int_print(int n, ...);
+void   int_iprint(int n, ...);
 string int_join(int n, ...);
 string int_glue(char *g, int n, ...);
 string int_rep(string s, unsigned int n, string g);
@@ -27,6 +29,22 @@ string int_sub(string s, int i, int j);
 string int_center(string s, unsigned int w, char c);
 string int_left(string s, unsigned int w, char c);
 string int_right(string s, unsigned int w, char c);
+string int_a2s(void *x);
+
+string x2s(long long int x);
+string i2s(signed long long int x);
+string u2s(unsigned long long int x);
+string f2s(long double x);
+string c2s(char x);
+string b2s(bool x);
+
+// iprint
+// uprint
+// xprint
+// fprint
+// cprint
+// pprint
+// bprint
 
 #define BUFFERSIZE 1024
 
@@ -38,6 +56,7 @@ string int_right(string s, unsigned int w, char c);
 #define OPT_ARG_1(opt,arg) (arg)
 
 #define print(...)      int_print(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define iprint(...)     int_iprint(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
 #define join(...)       int_join(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
 #define glue(g,...)     int_glue(g, COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
 #define rep(s,n,...)    int_rep(s, n, OPT_ARG(COUNT_ARGS(__VA_ARGS__), NULL, ##__VA_ARGS__))
@@ -47,27 +66,18 @@ string int_right(string s, unsigned int w, char c);
 #define center(s,w,...) int_center(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
 #define left(s,w,...)   int_left(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
 #define right(s,w,...)  int_right(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
+#define p2s(x)          int_a2s((void *)(&(x)))
+#define a2s(x)          int_a2s((void *)(x))
 
-// s2i
-// s2u
-// s2f
-// s2c
+#define s2i(x)   strtol(x,NULL,10)
+#define s2u(x)   strtoul(x,NULL,10)
 
-// i2s
-// u2s
-// x2s
-// f2s
-// c2s
-// p2s
-// b2s
+#define s2lli(x) strtoll(x,NULL,10)
+#define s2llu(x) strtoull(x,NULL,10)
 
-// iprint
-// uprint
-// xprint
-// fprint
-// cprint
-// pprint
-// bprint
+#define s2f(x)   strtof(x,NULL)
+#define s2d(x)   strtod(x,NULL)
+#define s2ld(x)  strtold(x,NULL)
 
 #endif // PINOCCHIO_H
 
