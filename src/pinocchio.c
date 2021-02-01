@@ -1,3 +1,4 @@
+// TODO: malloc_size in append/prepend printf("%zu\n", malloc_size(A));
 // string manipulation
 // regex
 // shell colors
@@ -99,10 +100,10 @@ str.rjust(width[, fillchar])
 str.lower()
 str.upper()
 str.join(iterable)
-
 str.strip([chars])
 str.lstrip([chars])
 str.rstrip([chars])
+
 str.count(sub[, start[, end]])
 str.find(sub[, start[, end]])
 str.index(sub[, start[, end]])
@@ -899,6 +900,68 @@ string int_a2s(void *x) // <<<
    snprintf(Buffer, 20, "%p", x);
 
    return Buffer;
+} // >>>
+
+string int_strip(string s, char side, string charlist) // <<<
+{
+   if(s == NULL)
+   {
+      return NULL;
+   }
+
+   if(charlist == NULL)
+   {
+      return s;
+   }
+
+   size_t StrLen  = strlen(s);
+   size_t StrLenCL = strlen(charlist);
+
+   if((StrLen == 0) || (StrLenCL == 0))
+   {
+      return s;
+   }
+
+   // strip right
+   if((side == 'b') || (side == 'r'))
+   {
+      for(int i=StrLen-1; i >=0 ; i--)
+      {
+         if( hasChar(charlist, s[i]) )
+         {
+            s[i] = '\0';
+         }
+         else
+         {
+            break;
+         }
+      }
+   }
+
+   // strip left
+   if((side == 'b') || (side == 'l'))
+   {
+      int WrIdx = 0;
+      bool StopStripping = false;
+      for(int RdIdx=0; s[RdIdx] != '\0'; RdIdx++)
+      {
+         s[WrIdx] = s[RdIdx];
+
+         if(StopStripping)
+         {
+            WrIdx++;
+         }
+         else if( ! hasChar(charlist, s[RdIdx]))
+         {
+            WrIdx++;
+            StopStripping = true;
+         }
+      }
+      s[WrIdx] = '\0';
+   }
+
+   return s;
+
 } // >>>
 
 // vim: fmr=<<<,>>> fdm=marker
