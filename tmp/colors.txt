@@ -1,0 +1,216 @@
+Amethyst          Teldrassil Purple                                     #af5fd7      
+Anakiwa           Glitter Shower                                        #87ffff      
+Aquamarine        Ineffable Green                                       #5fffaf      
+Aquamarine        Rare Wind                                             #5fffd7      
+Aquamarine        Tibetan Plateau                                       #87ffd7      
+Au Chico          Rabbit Paws                                           #875f5f      
+Azure Radiance    Bubble Bobble P2                                      #0087ff      
+Bamboo            Ancient Bamboo                                        #d75f00      
+Bay Leaf          Chatty Cricket                                        #87af87      
+Bitter Lemon      Chartreuse Shot                                       #d7d700      
+Black             Black                                                 #000000      
+Blaze Orange      Vivid Orange                                          #ff5f00      
+Blue              Blue                                                  #0000ff      
+Blue Ribbon       Bright Blue                                           #005fff      
+Blue Stone        Mosque                                                #005f5f      
+Blush Pink        Darling Bud                                           #ff87ff      
+Bondi Blue        Fiji                                                  #00afaf      
+Bouquet           Regal Orchid                                          #af87af      
+Brandy Rose       Orchid Red                                            #af8787      
+Bright Green      Bright Green                                          #5fff00      
+Bright Green      Radioactive Lilypad                                   #5fd700      
+Bright Red        Red Door                                              #af0000      
+Bright Turquoise  Ice Ice Baby                                          #00ffd7      
+Bright Turquoise  Neon Blue                                             #00d7ff      
+Brink Pink        Brink Pink                                            #ff5f87      
+Buddha Gold       Honey and Thyme                                       #afaf00      
+Can Can           Springtime Bloom                                      #d787af      
+Canary            Isotonic Water                                        #d7ff5f      
+Cardinal Pink     Grapest                                               #87005f      
+Caribbean Green   Channel Marker Green                                  #00d7af      
+Caribbean Green   Underwater Fern                                       #00d787      
+Carnation         Fusion Red                                            #ff5f5f      
+Cerulean          Blue Atoll                                            #00afd7      
+Charlotte         Celeste                                               #afffff      
+Chartreuse        Lasting Lime                                          #87ff00      
+Chartreuse Yellow Lime Zest                                             #d7ff00      
+Chelsea Cucumber  Chelsea Cucumber                                      #87af5f      
+Chetwode Blue     Bailey Bells                                          #8787d7      
+Chicago           Rhine Castle                                          #5f5f5f      
+Christi           Kermit Green                                          #5faf00      
+Clairvoyant       Clear Plum                                            #5f005f      
+Clam Shell        Mary Rose                                             #d7afaf      
+Clay Creek        Mosstone                                              #87875f      
+Conifer           Lime Lizard                                           #afd75f      
+Copperfield       Bright Sienna                                         #d7875f      
+Cornflower Blue   Deep Denim                                            #5f87ff      
+Cornflower Blue   Tiān Lán Sky                                          #5fafff      
+Cornflower Lilac  Fancy Flamingo                                        #ffafaf      
+Cosmos            Forgotten Pink                                        #ffd7d7      
+Cranberry         Surfer Girl                                           #d75f87      
+Cumulus           Poetic Yellow                                         #ffffd7      
+Cyan / Aqua       Aqua                                                  #00ffff      
+Dandelion         Common Dandelion                                      #ffd75f      
+Danube            Blue Jay                                              #5f87d7      
+Dark Blue         Bluealicious                                          #0000d7      
+Dark Blue         Bohemian Blue                                         #0000af      
+De York           Greek Garden                                          #87d787      
+Deep Cerulean     Stomy Shower                                          #0087af      
+Deep Sea          Absinthe Turquoise                                    #00875f      
+Deluge            Lusty Lavender                                        #875faf      
+Dodger Blue       Krishna Blue                                          #00afff      
+Dolly             Cinque Foil                                           #ffff87      
+Dolphin           Purple Balloon                                        #5f5f87      
+Downy             Medium Aquamarine                                     #5fd7af      
+Dull Lavender     Lilac Geode                                           #af87ff      
+Electric Violet   Digital Violets                                       #af00ff      
+Electric Violet   Electric Indigo                                       #5f00ff      
+Electric Violet   French Violet                                         #8700d7      
+Electric Violet   Purple Climax                                         #8700ff      
+Electric Violet   Vibrant Purple                                        #af00d7      
+Emerald           Spring Bouquet                                        #5fd787      
+Endeavour         Cobalt Stone                                          #005faf      
+Feijoa            Fresh Lettuce                                         #afd787      
+Fern              Boring Green                                          #5faf5f      
+Flirt             Vibrant Velvet                                        #af0087      
+Flush Orange      Mandarin Jelly                                        #ff8700      
+Fog               Transparent Blue                                      #d7d7ff      
+Forest Green      Phosphor Green                                        #00af00      
+Fuchsia Pink      Orchid Dottyback                                      #af5faf      
+Galliano          Palomino Gold                                         #d7af00      
+Geraldine         Red Mull                                              #ff8787      
+Glade Green       English Ivy                                           #5f875f      
+Gold              Gold                                                  #ffd700      
+Gossip            Lime Mist                                             #d7ffaf      
+Grandis           Workout Routine                                       #ffd787      
+Green             Green                                                 #00ff00      
+Green             Greenalicious                                         #00d700      
+Green Mist        Green Mesh                                            #d7d7af      
+Guardsman Red     Rosso Corsa                                           #d70000      
+Gulf Blue         Abyssal Blue                                          #00005f      
+Gulf Stream       Hydrology                                             #87afaf      
+Heliotrope        Flaming Flamingo                                      #d75fff      
+Heliotrope        Lavender Tea                                          #d787ff      
+Hit Pink          Super Sepia                                           #ffaf87      
+Hollywood Cerise  Aphroditean Fuschia                                   #d700af      
+Hollywood Cerise  Bright Pink                                           #ff00af      
+Hopbush           Mega Magenta                                          #d75faf      
+Horizon           Shrinking Violet                                      #5f87af      
+Hot Pink          Illicit Pink                                          #ff5fd7      
+Hot Pink          Yíng Guāng Sè Pink                                    #ff5faf      
+Hot Toddy         Golden Palm                                           #af8700      
+Indigo            Exodus Fruit                                          #5f5fd7      
+Iron              Cape Hope                                             #d7d7d7      
+Jade              Go Green!                                             #00af5f      
+Japanese Laurel   Fine Pine                                             #008700      
+Jordy Blue        Carolina Blue                                         #87afff      
+Jungle Mist       Rivers Edge                                           #afd7d7      
+Laser Lemon       Canary                                                #ffff5f      
+Lavender          Middy's Purple                                        #af87d7      
+Lavender          Purple Hedonist                                       #af5fff      
+Lavender Pink     Lavender Candy                                        #ffafd7      
+Light Apricot     Delicious Melon                                       #ffd7af      
+Lime              Lime Acid                                             #afff00      
+Limeade           Fresh Lawn                                            #87af00      
+Limeade           Pesto Alla Genovese                                   #5f8700      
+Lipstick          Velvet Cupcake                                        #af005f      
+Lochmara          Blue Cola                                             #0087d7      
+Locust            Daddy-O                                               #afaf87      
+Logan             Pixie Violet                                          #afafd7      
+Madang            Creamy Mint                                           #afffaf      
+Magenta / Fuchsia Magenta                                               #ff00ff      
+Magenta / Fuchsia Psychedelic Purple                                    #d700ff      
+Magic Mint        Pale Turquoise                                        #afffd7      
+Mai Tai           Orange Brown                                          #af5f00      
+Malachite         Malachite                                             #00d75f      
+Malibu            Tranquil Pool                                         #87d7ff      
+Mantis            Lightish Green                                        #5fd75f      
+Mantis            Lilliputian Lime                                      #87d75f      
+Matrix            Italian Villa                                         #af5f5f      
+Mauve             Jigglypuff                                            #ffafff      
+Mauve             Light Violet                                          #d7afff      
+Medium Purple     Purple Anemone                                        #875fff      
+Meteor            Fox Tails                                             #d78700      
+Mindaro           Green Shimmer                                         #d7ff87      
+Mint Green        Easter Green                                          #87ff87      
+Mint Green        Esper's Fungus Green                                  #87ffaf      
+Moss Green        Flower Stem                                           #afd7af      
+Muesli            Clay Ochre                                            #af875f      
+Navy Blue         Midnight in Tokyo                                     #000087      
+New York Pink     Peaches of Immortality                                #d78787      
+Olive             Heart Gold                                            #878700      
+Olive Green       Palm                                                  #afaf5f      
+Orchid            Free Speech Magenta                                   #d75fd7      
+Orchid            Lavender Pink                                         #d787d7      
+Orient            Blue Flame                                            #005f87      
+Oyster Bay        Refreshing Primer                                     #d7ffff      
+Perano            Winterspring Lilac                                    #afafff      
+Persian Green     Hobgoblin                                             #00af87      
+Persian Pink      Pink Delight                                          #ff87d7      
+Pink Flamingo     Violet Pink                                           #ff5fff      
+Pink Lace         Sugarpills                                            #ffd7ff      
+Pistachio         Overgrown                                             #87d700      
+Polo Blue         Birdie Num Num                                        #87afd7      
+Portafino         VIC 20 Creme                                          #ffffaf      
+Portage           Lavender Blue Shadow                                  #8787ff      
+Purple            Aubergine Perl                                        #5f00af      
+Purple            Peaceful Purple                                       #5f0087      
+Purple Heart      Trusted Purple                                        #5f00d7      
+Purple Pizzazz    Fúchsia Intenso                                       #d700d7      
+Purple Pizzazz    Hot Magenta                                           #ff00d7      
+Razzmatazz        Standby Led                                           #ff005f      
+Razzmatazz        Tête-à-Tête                                           #d7005f      
+Red               Red                                                   #ff0000      
+Red Berry         Chanticleer                                           #870000      
+Red Violet        Snappy Violet                                         #d70087      
+Rio Grande        King Lime                                             #afd700      
+Riptide           Island Oasis                                          #87d7d7      
+Robin's Egg Blue  Jade Glass                                            #00d7d7      
+Roman             Spiced Coral                                          #d75f5f      
+Rose              Fancy Fuchsia                                         #ff0087      
+Rosewood          Spikey Red                                            #5f0000      
+Royal Blue        Blue Genie                                            #5f5fff      
+Rusty Nail        Rat Brown                                             #875f00      
+Sail              Ice Cold Stare                                        #afd7ff      
+Salmon            After Burn                                            #ff875f      
+San Felix         Cucumber                                              #005f00      
+Saratoga          Mud Green                                             #5f5f00      
+Scampi            Bellflower                                            #5f5faf      
+Science Blue      Blue Ruin                                             #005fd7      
+Screamin' Green   Poisonous Dart                                        #87ff5f      
+Screamin' Green   Screamin' Green                                       #5fff5f      
+Screamin' Green   Thallium Flame                                        #5fff87      
+Shakespeare       Flyway                                                #5fafd7      
+Silver Chalice    Smoke Screen                                          #afafaf      
+Silver Tree       Verdigris Green                                       #5faf87      
+Smalt Blue        Steel Teal                                            #5f8787      
+Snowy Mint        Transparent Green                                     #d7ffd7      
+Spring Green      Cathode Green                                         #00ff5f      
+Spring Green      Greenish Turquoise                                    #00ffaf      
+Spring Green      Guppie Green                                          #00ff87      
+Strikemaster      Candy Violet                                          #875f87      
+Sulu              Pale Lime Green                                       #afff5f      
+Sulu              Pistachio Mousse                                      #afff87      
+Sundance          Sell Gold                                             #d7af5f      
+Suva Gray         Mithril                                               #878787      
+Tacha             Banana Chalk                                          #d7d75f      
+Tan               Calico                                                #d7af87      
+Tapestry          Wild Mulberry                                         #af5f87      
+Teal              Green Moblin                                          #008787      
+Texas Rose        Vintage Orange                                        #ffaf5f      
+Thistle           Bff                                                   #d7afd7      
+Tickle Me Pink    Informative Pink                                      #ff87af      
+Tradewind         Aquarelle                                             #5fafaf      
+True V            Gloomy Purple                                         #875fd7      
+Turquoise Blue    Athena Blue                                           #5fd7ff      
+Turquoise Blue    Moonglade Water                                       #5fffff      
+Viking            Hammam Blue                                           #5fd7d7      
+Violet Eggplant   Energic Eggplant                                      #af00af      
+Violet Eggplant   Mardi Gras                                            #870087      
+Violet Eggplant   Shade of Violet                                       #8700af      
+Vista Blue        Jovial Jade                                           #87d7af      
+White             White                                                 #ffffff      
+Wild Blue Yonder  Non Skid Grey                                         #8787af      
+Winter Hazel      Wax Green                                             #d7d787      
+Yellow            Yellow                                                #ffff00      
+Yellow Sea        Gold Fusion                                           #ffaf00      

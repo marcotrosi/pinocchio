@@ -18,6 +18,13 @@ string upper(string s);
 string rev(string s);
 size_t len(string s);
 
+string x2s(long long int x);
+string i2s(signed long long int x);
+string u2s(unsigned long long int x);
+string f2s(long double x);
+string c2s(char x);
+string b2s(bool x);
+
 // internal functions used by macros
 void   int_print(int n, ...);
 void   int_iprint(int n, ...);
@@ -32,13 +39,9 @@ string int_left(string s, unsigned int w, char c);
 string int_right(string s, unsigned int w, char c);
 string int_a2s(void *x);
 string int_strip(string s, char side, string w);
-
-string x2s(long long int x);
-string i2s(signed long long int x);
-string u2s(unsigned long long int x);
-string f2s(long double x);
-string c2s(char x);
-string b2s(bool x);
+signed long long int int_cindex(string s, char c, signed long long int n, size_t start);
+size_t int_ccount(string s, char c, size_t start, size_t end);
+string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t end);
 
 // iprint
 // uprint
@@ -73,6 +76,7 @@ string b2s(bool x);
 #define strip(s,...)    int_strip(s, 'b', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
 #define lstrip(s,...)   int_strip(s, 'l', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
 #define rstrip(s,...)   int_strip(s, 'r', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
+#define cindex(s,c,...) int_cindex(s,c,__VA_ARGS__)
 
 #define s2i(x)   strtol(x,NULL,10)
 #define s2u(x)   strtoul(x,NULL,10)
@@ -222,17 +226,20 @@ http://ascii-table.com/ansi-escape-sequences-vt-100.php
 #define BG_CLR(v)     "\e[48;5;"#v"m"
 #define BG_RGB(r,g,b) "\e[48;2;"#r";"#g";"#b"m"
 // >>>
+/*
 // cursor movements <<<
-#define CRS_SAVE   "\e[s"
-#define CRS_LOAD   "\e[u"
+#define CUS "\e[s"
+#define CUL "\e[u"
 
-#define CRS_PUT(l,c) "\e["#l";"#c"f"
-// or H instead of f
-
-#define CRS_UP(n)  "\e["#n"A"
-#define CRS_DN(n)  "\e["#n"B"
-#define CRS_FW(n)  "\e["#n"C"
-#define CRS_BW(n)  "\e["#n"D"
+#define CUU(n)   "\e["#n"A"
+#define CUD(n)   "\e["#n"B"
+#define CUF(n)   "\e["#n"C"
+#define CUB(n)   "\e["#n"D"
+#define CNL(n)   "\e["#n"E"
+#define CPL(n)   "\e["#n"F"
+#define CHA(n)   "\e["#n"G"
+#define CUP(l,c) "\e["#l";"#c"H"
+#define HVP(l,c) "\e["#l";"#c"f"
 // >>>
 // clearing deleting <<<
 #define RESET        "\ec"
@@ -244,6 +251,11 @@ http://ascii-table.com/ansi-escape-sequences-vt-100.php
 #define CLEAR_SCREEN "\e[2J"
 #define CLEAR_LINE   "\e[2K"
 // >>>
+// scrolling <<<
+#define SU(n) "\e["#n"S"
+#define SD(n) "\e["#n"T"
+// >>>
+*/
 // >>>
 
 #endif // PINOCCHIO_H

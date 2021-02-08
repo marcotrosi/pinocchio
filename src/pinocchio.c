@@ -1,160 +1,3 @@
-// TODO: malloc_size in append/prepend printf("%zu\n", malloc_size(A));
-// string manipulation
-// regex
-// shell colors
-// file io
-
-/* C <<<
-
-https://en.cppreference.com/w/c/string/byte
-https://pubs.opengroup.org/onlinepubs/7908799/xsh/strings.h.html
-
-strcpy copies one string to another
-strncpy copies a certain amount of characters from one string to another
-strcat concatenates two strings
-strncat concatenates a certain amount of characters of two strings
-strxfrm transform a string so that strcmp would produce the same result as strcoll
-strlen returns the length of a given string
-strcmp compares two strings
-strncmp compares a certain number of characters from two strings
-strcoll compares two strings in accordance to the current locale
-strchr finds the first occurrence of a character
-strrchr finds the last occurrence of a character
-strspn returns the length of the maximum initial segment that consists of only the characters found in another byte string
-strcspn returns the length of the maximum initial segment that consists of only the characters not found in another byte string
-strpbrk finds the first location of any character from a set of separators
-strstr finds the first occurrence of a substring of characters
-strtok finds the next token in a byte string
-memchr searches an array for the first occurrence of a character
-memcmp compares two buffers
-memset fills a buffer with a character
-memcpy copies one buffer to another
-memmove moves one buffer to another
-strerror returns a text version of a given error code 
-
-isalnum checks if a character is alphanumeric
-isalpha checks if a character is alphabetic
-islower checks if a character is lowercase
-isupper checks if a character is an uppercase character
-isdigit checks if a character is a digit
-isxdigit checks if a character is a hexadecimal character
-iscntrl checks if a character is a control character
-isgraph checks if a character is a graphical character
-isspace checks if a character is a space character
-isblank checks if a character is a blank character
-isprint checks if a character is a printing character
-ispunct checks if a character is a punctuation character
-tolower converts a character to lowercase
-toupper converts a character to uppercase 
-
-int    bcmp(const void *, const void *, size_t);
-void   bcopy(const void *, void *, size_t);
-void   bzero(void *, size_t);
-int    ffs(int);
-char   *index(const char *, int);
-char   *rindex(const char *, int);
-int    strcasecmp(const char *, const char *);
-int    strncasecmp(const char *, const char *, size_t);
-
-atof converts a byte string to a floating point value
-atoi atol atoll (C++11) converts a byte string to an integer value
-strtol strtoll (C++11) converts a byte string to an integer value
-strtoul strtoull (C++11) converts a byte string to an unsigned integer value
-strtof strtod strtold converts a byte string to a floating point value
-
->>> */
-/* Lua <<<
-
-https://www.lua.org/manual/5.4/manual.html#6.4
-
-string.byte (s [, i [, j]])
-string.char (···)
-string.dump (function [, strip])
-string.pack (fmt, v1, v2, ···)
-string.packsize (fmt)
-string.unpack (fmt, s [, pos])
-tostring()
-tonumber()
-
-string.find (s, pattern [, init [, plain]])
-string.gmatch (s, pattern [, init])
-string.gsub (s, pattern, repl [, n])
-string.match (s, pattern [, init])
-
-string.format (formatstring, ···)
-string.len (s)
-string.lower (s)
-string.upper (s)
-string.rep (s, n [, sep])
-string.reverse (s)
-string.sub (s, i [, j])
-
->>> */
-/* Python <<<
-
-https://docs.python.org/3/library/stdtypes.html#string-methods
-
-str.center(width[, fillchar])
-str.ljust(width[, fillchar])
-str.rjust(width[, fillchar])
-str.lower()
-str.upper()
-str.join(iterable)
-str.strip([chars])
-str.lstrip([chars])
-str.rstrip([chars])
-
-str.count(sub[, start[, end]])
-str.find(sub[, start[, end]])
-str.index(sub[, start[, end]])
-str.partition(sep)
-str.removeprefix(prefix, /)
-str.removesuffix(suffix, /)
-str.replace(old, new[, count])
-str.split(sep=None, maxsplit=-1)
-str.splitlines([keepends])
-
-str.capitalize()
-str.casefold()
-str.encode(encoding="utf-8", errors="strict")
-str.endswith(suffix[, start[, end]])
-str.expandtabs(tabsize=8)
-str.format(*args, **kwargs)
-str.format_map(mapping)
-str.rfind(sub[, start[, end]])
-str.rindex(sub[, start[, end]])
-str.rpartition(sep)
-str.rsplit(sep=None, maxsplit=-1)
-str.rstrip([chars])
-str.startswith(prefix[, start[, end]])
-str.swapcase()
-str.title()
-str.translate(table)
-str.zfill(width)¶
-str.isalnum()
-str.isalpha()
-str.isascii()
-str.isdecimal()
-str.isdigit()
-str.isidentifier()
-str.islower()
-str.isnumeric()
-str.isprintable()
-str.isspace()
-str.istitle()
-str.isupper()
-
->>> */
-/* aRT <<<
-
-aRT.alignString_s(String_s, Width_n, Alignment_s)
-aRT.makeStringVisible_s(String_s)
-aRT.deleteEscapeSequences_s(String_s, Key_t)
-aRT.deleteWhiteSpaces_s(KeyWord_s, String_s)
-aRT.splitString_t(s, sep)
-
->>> */
-
 #include "pinocchio.h"
 
 string str(const string s) // <<<
@@ -962,6 +805,112 @@ string int_strip(string s, char side, string charlist) // <<<
 
    return s;
 
+} // >>>
+
+signed long long int int_cindex(string s, char c, signed long long int n, size_t start) // <<<
+{
+   signed long long int Cnt = 0; // match counter
+
+   if(s==NULL)
+   {
+      return -1;
+   }
+
+   if(n==0)
+   {
+      return -1;
+   }
+
+   size_t StrLen = strlen(s);
+
+   if(start >= StrLen)
+   {
+      return -1;
+   }
+
+   if(n>0)
+   {
+      for(signed long long int i=start; s[i] !='\0'; i++)
+      {
+         if(s[i] == c)
+         {
+            Cnt++;
+            if(Cnt == n)
+            {
+               return i;
+            }
+         }
+      }
+   }
+   else
+   {
+      for(signed long long int i=(StrLen-1); i>=0 ; i--)
+      {
+         if(s[i] == c)
+         {
+            Cnt++;
+            if(Cnt == -(n))
+            {
+               return i;
+            }
+         }
+      }
+   }
+
+   return -1;
+} // >>>
+
+size_t int_ccount(string s, char c, size_t start, size_t end) // <<<
+{
+   size_t Cnt=0u;
+
+   if(s==NULL)
+   {
+      return Cnt;
+   }
+
+   size_t StrLen = strlen(s);
+
+   if(start >= StrLen)
+   {
+      return Cnt;
+   }
+
+   for(int i=start; ((s[i] !='\0') && (i <= end)); i++)
+   {
+      if(s[i] == c)
+      {
+         Cnt++;
+      }
+   }
+   return Cnt;
+} // >>>
+
+string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t end) // <<<
+{
+   size_t Cnt=0u;
+
+   if(s==NULL)
+   {
+      return s;
+   }
+
+   size_t StrLen = strlen(s);
+
+   if(start >= StrLen)
+   {
+      return s;
+   }
+
+   for(int i=start; ((s[i] !='\0') && (i <= end)); i++)
+   {
+      if(s[i] == c)
+      {
+         s[i] = r;
+         Cnt++;
+      }
+   }
+   return s;
 } // >>>
 
 // vim: fmr=<<<,>>> fdm=marker

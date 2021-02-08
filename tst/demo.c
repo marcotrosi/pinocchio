@@ -32,6 +32,8 @@ int main(void)
    print(sub(H,2,2));
    printf("%zu\n", len("pinocchio"));
    printf("%zu\n", len(NULL));
+   /* printf("%s has %zu k's\n", C, ccount(C, 'k', 1, 8)); */
+   /* printf("%s has k at index %lld\n", C, cindex(C, 'k', 1)); */
    print(append(C,", who is", " ", "there?"));
    print(prepend(C,"Hey, ", "listen!", "   "));
    print(I);
@@ -70,28 +72,6 @@ int main(void)
    {
       printf("no\n");
    }
-
-   free(A);
-   free(B);
-   free(C);
-   free(D);
-   free(E);
-   free(F);
-   free(G);
-   free(H);
-   free(I);
-   free(J);
-   free(K);
-   free(L);
-   free(M);
-   free(N);
-   free(O);
-   free(P);
-   free(Q);
-   free(R);
-   free(S);
-   free(T);
-   free(U);
 
    printf(BOLD"Foo"NOBOLD"Bar"OFF"\n");
    printf(DIM"Foo"NODIM"Bar"OFF"\n");
@@ -157,6 +137,43 @@ int main(void)
 
    printf(CLR(58)"Text with Color number"OFF"\n");
    printf(RGB(55,134,129)"Text with RGB Color"OFF"\n");
+
+   printf(BG_CLR(58)"Background with Color number"OFF"\n");
+   printf(BG_RGB(55,134,129)"Background with RGB Color"OFF"\n");
+
+   /* printf("Foo"CRS_SAVE CRS_PUT(4,40)"Bar"CRS_LOAD"BAR\n"); */
+   /* printf("FooBar\n"); */
+   /* printf("FooBar"CRS_UP(1) CRS_BW(5)"X"CRS_DN(1) CRS_FW(1)"Y\n"); */
+
+   /* printf("foobar"CLEAR_LEFT"FOOBAR\n"); */
+   /* printf("foobarfoobarfoobarfoobarfoobarfoobar"CRS_BW(28)CLEAR_RIGHT"FOOBAR\n"); */
+   /* printf(CLEAR"FOOBAR\n"); */
+   /* printf(CLEAR_UP"FOOBAR\n"); */
+   /* printf(CLEAR_SCREEN"FOOBAR\n"); */
+   /* printf(RESET"FOOBAR\n"); */
+
+
+   free(A);
+   free(B);
+   free(C);
+   free(D);
+   free(E);
+   free(F);
+   free(G);
+   free(H);
+   free(I);
+   free(J);
+   free(K);
+   free(L);
+   free(M);
+   free(N);
+   free(O);
+   free(P);
+   free(Q);
+   free(R);
+   free(S);
+   free(T);
+   free(U);
 
    return 0;
 }
