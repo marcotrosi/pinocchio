@@ -89,6 +89,7 @@ string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t e
 #define lstrip(s,...)   int_strip(s, 'l', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
 #define rstrip(s,...)   int_strip(s, 'r', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
 #define cindex(s,c,...) int_cindex(s, c, OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 1, 0, ##__VA_ARGS__))
+#define ccount(s,c,...) int_ccount(s, c, OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 1, 0, ##__VA_ARGS__))
 
 #define s2i(x)   strtol(x,NULL,10)
 #define s2u(x)   strtoul(x,NULL,10)

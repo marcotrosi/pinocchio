@@ -15,5 +15,8 @@ int main(void)
    test_cindex ( "foofoo" , 'o'  , 3   , 0     , 4         , __FILE__ , __LINE__ ); // third
    test_cindex ( "foofoo" , 'o'  , -3  , 0     , 2         , __FILE__ , __LINE__ ); // third from end
 
+   //          ( string   , char , start , end, must , file     , line     );    description
+   test_ccount ( "foobar" , 'o'  , 0     , -1 ,  2   , __FILE__ , __LINE__ ); // normal
+
    return 0;
 }

@@ -847,11 +847,6 @@ size_t int_cindex(string s, char c, signed long long int n, size_t start) // <<<
       return NO_RESULT;
    }
 
-   printf("%s\n", s);
-   printf("%c\n", c);
-   printf("%lld\n", n);
-   printf("%lu\n", start);
-
    if(n>0)
    {
       for(size_t i=start; s[i] !='\0'; i++)
@@ -861,7 +856,6 @@ size_t int_cindex(string s, char c, signed long long int n, size_t start) // <<<
             Cnt++;
             if(Cnt == n)
             {
-               printf("1 %zu\n", i);
                return i;
             }
          }
@@ -876,14 +870,12 @@ size_t int_cindex(string s, char c, signed long long int n, size_t start) // <<<
             Cnt++;
             if(Cnt == -(n))
             {
-               printf("2\n");
                return i;
             }
          }
       }
    }
 
-   printf("3\n");
    return NO_RESULT;
 } // >>>
 
