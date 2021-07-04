@@ -201,6 +201,25 @@ string x2s(long long int x) // <<<
 
 
 // internal functions used by macros
+void int_freestr(int n, ...) // <<<
+{
+   va_list args;
+
+   va_start(args, n);
+
+	for(int i=0; i < n; i++)
+	{
+      char *Arg = va_arg(args, char *);
+
+		if(Arg != NULL)
+		{
+			free(Arg);
+		}
+	}
+
+   va_end(args);
+} // >>>
+
 void int_print(int n, ...) // <<<
 {
    va_list args;
@@ -807,36 +826,42 @@ string int_strip(string s, char side, string charlist) // <<<
 
 } // >>>
 
-signed long long int int_cindex(string s, char c, signed long long int n, size_t start) // <<<
+size_t int_cindex(string s, char c, signed long long int n, size_t start) // <<<
 {
-   signed long long int Cnt = 0; // match counter
+   size_t Cnt = 0; // match counter
 
    if(s==NULL)
    {
-      return -1;
+      return NO_RESULT;
    }
 
    if(n==0)
    {
-      return -1;
+      return NO_RESULT;
    }
 
    size_t StrLen = strlen(s);
 
    if(start >= StrLen)
    {
-      return -1;
+      return NO_RESULT;
    }
+
+   printf("%s\n", s);
+   printf("%c\n", c);
+   printf("%lld\n", n);
+   printf("%lu\n", start);
 
    if(n>0)
    {
-      for(signed long long int i=start; s[i] !='\0'; i++)
+      for(size_t i=start; s[i] !='\0'; i++)
       {
          if(s[i] == c)
          {
             Cnt++;
             if(Cnt == n)
             {
+               printf("1 %zu\n", i);
                return i;
             }
          }
@@ -844,20 +869,22 @@ signed long long int int_cindex(string s, char c, signed long long int n, size_t
    }
    else
    {
-      for(signed long long int i=(StrLen-1); i>=0 ; i--)
+      for(size_t i=(StrLen-1); i>=0 ; i--)
       {
          if(s[i] == c)
          {
             Cnt++;
             if(Cnt == -(n))
             {
+               printf("2\n");
                return i;
             }
          }
       }
    }
 
-   return -1;
+   printf("3\n");
+   return NO_RESULT;
 } // >>>
 
 size_t int_ccount(string s, char c, size_t start, size_t end) // <<<

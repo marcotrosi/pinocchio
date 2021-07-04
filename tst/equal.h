@@ -4,14 +4,15 @@
 #include <stdbool.h>
 
 #if NOCOLOR == false
-#define CLRRED  "\e[91m"
-#define CLRGRN  "\e[92m"
-#define CLROFF  "\e[0m"
+   #define CLRRED  "\e[91m"
+   #define CLRGRN  "\e[92m"
+   #define CLROFF  "\e[0m"
 #else
-#define CLRRED  ""
-#define CLRGRN  ""
-#define CLROFF  ""
+   #define CLRRED  ""
+   #define CLRGRN  ""
+   #define CLROFF  ""
 #endif
+
 #define ABS(x) (((x) > 0) ? (x) : -(x))
 #define PASSED printf("%s:%zu: %spassed%s\n", file, line, CLRGRN, CLROFF)
 #define FAILED fprintf(stderr,"%s:%zu: %sfailed%s\n", file, line, CLRRED, CLROFF)

@@ -168,8 +168,16 @@ end
 -- lev is an integer, the header level.
 local Levels = {"=", "-"}
 function Header(lev, s, attr)
-   return string.rep(Levels[lev] or "", 100) .. "\n" .. s .. "~" .. "\n" ..
-   string.rep(" ", 90 - string.len(attr.id)) .. "*pinocchio-" .. attr.id .. "*"
+   local H
+   if(lev <= 2) then
+      H = string.rep(Levels[lev] or "", 100) .. "\n" .. string.rep(" ", 90 - string.len(attr.id))
+      .. "*pinocchio-" .. attr.id .. "*" .. "\n" .. s .. "~" --.. "\n"
+   elseif(lev==3) then
+      H = string.rep(" ", 90 - string.len(attr.id)) .. "*pinocchio-" .. attr.id .. "*" .. "\n" .. s .. "~" --.. "\n"
+   else
+      H = s .. "~" --.. "\n"
+   end
+   return H
 end
 
 function Space()
@@ -219,6 +227,10 @@ function CodeBlock(s, attr)
       SplitLines[i] = "  " .. l
    end
    return ">\n" .. table.concat(SplitLines, "\n") .. "\n<"
+end
+
+function HorizontalRule()
+  return string.rep("─", 100)
 end
 
 
@@ -334,10 +346,6 @@ end
 
 function BlockQuote(s)
   return "\n>\n" .. s .. "\n<\n"
-end
-
-function HorizontalRule()
-  return string.rep("─", 100)
 end
 
 function LineBlock(ls)
