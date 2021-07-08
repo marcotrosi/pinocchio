@@ -34,10 +34,13 @@ int main(void)
    /* printf("%zu\n", len(NULL)); */
    /* printf("%s has k at index %zu\n", C, cindex(C, 'k')); */
    /* printf("%s has fourth k at index %zu\n", C, cindex(C, 'k', 4)); */
+   /* printf("%s has fourth k at index %zu\n", C, cindex(C, 'k', -2)); */
    /* printf("%s has second o at index %zu\n", C, cindex(C, 'o', 1, 4)); */
-   printf("%s has %zu k's\n", C, ccount(C, 'k'));
-   printf("%s has %zu k's\n", C, ccount(C, 'k', 2));
-   printf("%s has %zu k's\n", C, ccount(C, 'k', 2, 7));
+   /* printf("%s has %zu k's\n", C, ccount(C, 'k'));       // 4 */
+   /* printf("%s has %zu k's\n", C, ccount(C, 'k', 2));    // 3 */
+   /* printf("%s has %zu k's\n", C, ccount(C, 'k', 2, 7)); // 2 */
+   printf("knockknock is now %s\n", creplace(C, 'k', 'g')); // gnocggnocg
+   printf("gnocggnocg is now %s\n", creplace(C, 'g', 'k', 2)); // knockgnocg
    /* print(append(C,", who is", " ", "there?")); */
    /* print(prepend(C,"Hey, ", "listen!", "   ")); */
    /* print(I); */

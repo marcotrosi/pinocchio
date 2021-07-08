@@ -844,12 +844,12 @@ size_t int_cindex(string s, char c, signed long long int n, size_t start) // <<<
 
    if(start >= StrLen)
    {
-      return NO_RESULT;
+      start = StrLen;
    }
 
-   if(n>0)
+   if(n>0) // TODO maybe reduce to 1 for-loop
    {
-      for(size_t i=start; s[i] !='\0'; i++)
+      for(size_t i=start; i <= StrLen; i++)
       {
          if(s[i] == c)
          {
@@ -863,7 +863,7 @@ size_t int_cindex(string s, char c, signed long long int n, size_t start) // <<<
    }
    else
    {
-      for(size_t i=(StrLen-1); i>=0 ; i--)
+      for(size_t i=start; i >= 0; i--)
       {
          if(s[i] == c)
          {
@@ -890,22 +890,23 @@ size_t int_ccount(string s, char c, size_t start, size_t end) // <<<
 
    size_t StrLen = strlen(s);
 
-   if(start >= StrLen)
+   if(end >= StrLen)
    {
-      return Cnt;
+      end = StrLen;
    }
 
-   for(int i=start; ((s[i] !='\0') && (i <= end)); i++)
+   for(size_t i=start; i <= end; i++)
    {
       if(s[i] == c)
       {
          Cnt++;
       }
    }
+
    return Cnt;
 } // >>>
 
-string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t end) // <<<
+string int_creplace(string s, char c, char r, size_t n, size_t start, size_t end) // <<<
 {
    size_t Cnt=0u;
 
@@ -916,19 +917,25 @@ string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t e
 
    size_t StrLen = strlen(s);
 
-   if(start >= StrLen)
+   if(end >= StrLen)
    {
-      return s;
+      end = StrLen;
    }
 
-   for(int i=start; ((s[i] !='\0') && (i <= end)); i++)
+   for(size_t i=start; i <= end; i++)
    {
       if(s[i] == c)
       {
          s[i] = r;
          Cnt++;
       }
+
+      if((n != 0) && (Cnt == n))
+      {
+         break;
+      }
    }
+
    return s;
 } // >>>
 

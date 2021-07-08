@@ -43,7 +43,7 @@ string int_a2s(void *x);
 string int_strip(string s, char side, string w);
 size_t int_cindex(string s, char c, signed long long int n, size_t start);
 size_t int_ccount(string s, char c, size_t start, size_t end);
-string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t end);
+string int_creplace(string s, char c, char r, size_t n, size_t start, size_t end);
 
 // iprint
 // uprint
@@ -56,6 +56,7 @@ string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t e
 // TODO make BUFFERSIZE setable from commandline
 #define BUFFERSIZE 1024
 #define NO_RESULT SIZE_MAX
+#define MAX_LEN (SIZE_MAX - 1U)
 
 #define COUNT_ARGS_HLP(aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,ba,bb,bc,bd,be,bf,bg,bh,bi,bj,bk,ca,cb,cc,cd,ce,cf,cg,ch,ci,cj,ck,da,db,dc,dd,de,df,dg,dh,di,dj,dk,ea,eb,ec,ed,ee,ef,eg,eh,ei,ej,ek,fa,fb,fc,fd,fe,ff,fg,fh,fi,fj,fk,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,gk,ha,hb,hc,hd,he,hf,hg,hh,hi,hj,hk,ia,ib,ic,id,ie,if,ig,ih,ii,ij,ik,ja,jb,jc,jd,je,jf,jg,jh,ji,jj,jk,ka,kb,kc,kd,ke,kf,kg,kh,ki,kj,kk,cnt,...) cnt
 #define COUNT_ARGS(...) COUNT_ARGS_HLP(,##__VA_ARGS__,120,119,118,117,116,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,100,99,98,97,96,95,94,93,92,91,90,89,88,87,86,85,84,83,82,81,80,79,78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0)
@@ -71,25 +72,39 @@ string int_creplace(string s, char c, char r, size_t start, size_t cnt, size_t e
 #define OPT_2ARG_HLP(cnt,dflt1,dflt2,...) OPT_2ARG_##cnt(dflt1,dflt2,##__VA_ARGS__)
 #define OPT_2ARG(cnt,dflt1,dflt2,...) OPT_2ARG_HLP(cnt,dflt1,dflt2,##__VA_ARGS__)
 
-#define freestr(...)    int_freestr(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define print(...)      int_print(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define iprint(...)     int_iprint(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define join(...)       int_join(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define glue(g,...)     int_glue(g, COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define rep(s,n,...)    int_rep(s, n, OPT_ARG(COUNT_ARGS(__VA_ARGS__), NULL, ##__VA_ARGS__))
-#define append(s,...)   int_append(&(s), COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define prepend(s,...)  int_prepend(&(s), COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
-#define sub(s,i,...)    int_sub(s,i,OPT_ARG(COUNT_ARGS(__VA_ARGS__), -1, ##__VA_ARGS__))
-#define center(s,w,...) int_center(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
-#define left(s,w,...)   int_left(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
-#define right(s,w,...)  int_right(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
-#define p2s(x)          int_a2s((void *)(&(x)))
-#define a2s(x)          int_a2s((void *)(x))
-#define strip(s,...)    int_strip(s, 'b', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
-#define lstrip(s,...)   int_strip(s, 'l', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
-#define rstrip(s,...)   int_strip(s, 'r', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
-#define cindex(s,c,...) int_cindex(s, c, OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 1, 0, ##__VA_ARGS__))
-#define ccount(s,c,...) int_ccount(s, c, OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 1, 0, ##__VA_ARGS__))
+#define CINDEX_OPT_2ARG_0(dflt1,dflt2) (dflt1),(dflt2)
+#define CINDEX_OPT_2ARG_1(dflt1,dflt2,arg1) (arg1),(((arg1)<0)?MAX_LEN:0)
+#define CINDEX_OPT_2ARG_2(dflt1,dflt2,arg1,arg2) (arg1),(arg2)
+#define CINDEX_OPT_2ARG_HLP(cnt,dflt1,dflt2,...) CINDEX_OPT_2ARG_##cnt(dflt1,dflt2,##__VA_ARGS__)
+#define CINDEX_OPT_2ARG(cnt,dflt1,dflt2,...) CINDEX_OPT_2ARG_HLP(cnt,dflt1,dflt2,##__VA_ARGS__)
+
+#define OPT_3ARG_0(dflt1,dflt2,dflt3) (dflt1),(dflt2),(dflt3)
+#define OPT_3ARG_1(dflt1,dflt2,dflt3,arg1) (arg1),(dflt2),(dflt3)
+#define OPT_3ARG_2(dflt1,dflt2,dflt3,arg1,arg2) (arg1),(arg2),(dflt3)
+#define OPT_3ARG_3(dflt1,dflt2,dflt3,arg1,arg2,arg3) (arg1),(arg2),(arg3)
+#define OPT_3ARG_HLP(cnt,dflt1,dflt2,dflt3,...) OPT_3ARG_##cnt(dflt1,dflt2,dflt3,##__VA_ARGS__)
+#define OPT_3ARG(cnt,dflt1,dflt2,dflt3,...) OPT_3ARG_HLP(cnt,dflt1,dflt2,dflt3,##__VA_ARGS__)
+
+#define freestr(...)        int_freestr(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define print(...)          int_print(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define iprint(...)         int_iprint(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define join(...)           int_join(COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define glue(g,...)         int_glue(g, COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define rep(s,n,...)        int_rep(s, n, OPT_ARG(COUNT_ARGS(__VA_ARGS__), NULL, ##__VA_ARGS__))
+#define append(s,...)       int_append(&(s), COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define prepend(s,...)      int_prepend(&(s), COUNT_ARGS(__VA_ARGS__), ##__VA_ARGS__)
+#define sub(s,i,...)        int_sub(s,i,OPT_ARG(COUNT_ARGS(__VA_ARGS__), -1, ##__VA_ARGS__))
+#define center(s,w,...)     int_center(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
+#define left(s,w,...)       int_left(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
+#define right(s,w,...)      int_right(s,w,OPT_ARG(COUNT_ARGS(__VA_ARGS__), ' ', ##__VA_ARGS__))
+#define p2s(x)              int_a2s((void *)(&(x)))
+#define a2s(x)              int_a2s((void *)(x))
+#define strip(s,...)        int_strip(s, 'b', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
+#define lstrip(s,...)       int_strip(s, 'l', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
+#define rstrip(s,...)       int_strip(s, 'r', OPT_ARG(COUNT_ARGS(__VA_ARGS__), " \t\n\r", ##__VA_ARGS__))
+#define cindex(s,c,...)     int_cindex(s, c, CINDEX_OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 1, 0, ##__VA_ARGS__))
+#define ccount(s,c,...)     int_ccount(s, c, OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 0, MAX_LEN, ##__VA_ARGS__))
+#define creplace(s,c,r,...) int_creplace(s, c, r, OPT_3ARG(COUNT_ARGS(__VA_ARGS__), 0, 0, MAX_LEN, ##__VA_ARGS__))
 
 #define s2i(x)   strtol(x,NULL,10)
 #define s2u(x)   strtoul(x,NULL,10)

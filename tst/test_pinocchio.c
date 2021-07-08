@@ -35,3 +35,20 @@ void test_ccount(char *s, char c, size_t start, size_t end, size_t must, char *f
       fprintf(stderr, "\tjust: %zu\n", just);
    }
 } // >>>
+
+// test_creplace <<<
+void test_creplace(char *s, char c, char r, size_t n, size_t start, size_t end, size_t must, char *file, size_t line)
+{
+   /* size_t just = int_creplace(s,c,r,n,start,end); */
+   size_t just = creplace(s,c,r,n,start,end);
+   if(isEqualUInt(just, must))
+   {
+      PASSED;
+   }
+   else
+   {
+      FAILED;
+      fprintf(stderr, "\tmust: %zu\n", must);
+      fprintf(stderr, "\tjust: %zu\n", just);
+   }
+} // >>>
