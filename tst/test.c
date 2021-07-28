@@ -28,5 +28,17 @@ int main(void)
    test_ccount ( "foobar" , 'o'  , 0     , 0       , 0    , __FILE__ , __LINE__ ); // start == end
    test_ccount ( "foobar" , 'o'  , 0     , 1       , 1    , __FILE__ , __LINE__ ); // limit range
 
+   /*                                            ( string   , char , repl, n , start , end     , must     , file     , line     ); */
+   {                               test_creplace ( NULL     , ' '  , ' ' , 0 , 0     , MAX_LEN , NULL     , __FILE__ , __LINE__ );              } // null 
+   { string input = str("foobar"); test_creplace ( input , 'o'  , 'x'    , 0 , 0     , MAX_LEN , "fxxbar" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'o'  , 'x'    , 1 , 0     , MAX_LEN , "fxobar" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'o'  , 'x'    , 2 , 0     , MAX_LEN , "fxxbar" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'o'  , 'x'    , 0 , 1     , MAX_LEN , "fxxbar" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'o'  , 'x'    , 0 , 2     , MAX_LEN , "foxbar" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'o'  , 'x'    , 0 , 3     , MAX_LEN , "foobar" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'r'  , 'x'    , 0 , 0     , MAX_LEN , "foobax" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'r'  , 'x'    , 0 , 0     , 5       , "foobax" , __FILE__ , __LINE__ ); free(input); } // null 
+   { string input = str("foobar"); test_creplace ( input , 'r'  , 'x'    , 0 , 0     , 4       , "foobar" , __FILE__ , __LINE__ ); free(input); } // null 
+
    return 0;
 }
