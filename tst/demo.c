@@ -39,8 +39,8 @@ int main(void)
    /* printf("%s has %zu k's\n", C, ccount(C, 'k'));       // 4 */
    /* printf("%s has %zu k's\n", C, ccount(C, 'k', 2));    // 3 */
    /* printf("%s has %zu k's\n", C, ccount(C, 'k', 2, 7)); // 2 */
-   printf("knockknock is now %s\n", creplace(C, 'k', 'g')); // gnocggnocg
-   printf("gnocggnocg is now %s\n", creplace(C, 'g', 'k', 2)); // knockgnocg
+   /* printf("knockknock is now %s\n", creplace(C, 'k', 'g')); // gnocggnocg */
+   /* printf("gnocggnocg is now %s\n", creplace(C, 'g', 'k', 2)); // knockgnocg */
    /* print(append(C,", who is", " ", "there?")); */
    /* print(prepend(C,"Hey, ", "listen!", "   ")); */
    /* print(I); */
@@ -61,7 +61,9 @@ int main(void)
    /* string R = p2s(A); */
    /* print(R); */
    /* string S = a2s(A); */
-   /* print(S); */
+   iprint(int_scount(C, "oc"));
+   iprint(scount(C, "k"));
+   iprint(ccount(C, 'k'));
    /* string T = x2s(-1); */
    /* print(T); */
    /* print(strip(U)); */

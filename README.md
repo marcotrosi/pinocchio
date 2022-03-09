@@ -15,10 +15,66 @@ want to write C code. This lib is only supposed to take away my pain, not more.
 
 # Overview
 Most functions are actually macros that wrap a function, which allowed me to get optional
-parameters. The following table also provides this information. You can also see in this table which
+parameters. The following table provides this information. You can also see in this table which
 functions allocate new memory, means that you have to store the returned address to be able to
-free() them later. Some functions work directly on the string and don't allocate or re-allocate
+`free()` them later. Some functions work directly on the string and don't allocate or re-allocate
 memory.
+
+| Name           | Type                      | Memory    | Description                                                       |
+|----------------|---------------------------|-----------|-------------------------------------------------------------------|
+| str            | function                  | malloc    | create string from string literal                                 |
+| strfmt         | function                  | malloc    | create string from format string                                  |
+| i2s            | function                  | malloc    | convert signed integer to string                                  |
+| u2s            | function                  | malloc    | convert unsigned integer to string                                |
+| f2s            | function                  | malloc    | convert float to string                                           |
+| c2s            | function                  | malloc    | convert character to string                                       |
+| b2s            | function                  | malloc    | convert boolean to string                                         |
+| x2s            | function                  | malloc    | convert hex value to string                                       |
+| lower          | function                  | -         | convert all characters to lower case                              |
+| upper          | function                  | -         | convert all characters to upper case                              |
+| rev            | function                  | -         | reverse string                                                    |
+| len            | function                  | -         | get string length                                                 |
+| freestr        | function wrapping macro   | -         | free memory                                                       |
+| print          | function wrapping macro   | -         | print strings                                                     |
+| iprint         | function wrapping macro   | -         | print integers                                                    |
+| join           | function wrapping macro   | malloc    | join strings                                                      |
+| glue           | function wrapping macro   | malloc    | join strings with a separator string                              |
+| rep            | function wrapping macro   | malloc    | repeat string with an optional separator string                   |
+| append         | function wrapping macro   | realloc   | append to string                                                  |
+| prepend        | function wrapping macro   | realloc   | prepend to string                                                 |
+| sub            | function wrapping macro   | malloc    | get substring                                                     |
+| center         | function wrapping macro   | malloc    | center string to width with optional fill character               |
+| left           | function wrapping macro   | malloc    | align string left to width with optional fill character           |
+| right          | function wrapping macro   | malloc    | align string right to width with optional fill character          |
+| strip          | function wrapping macro   | -         | strip string left and right                                       |
+| lstrip         | function wrapping macro   | -         | strip string left                                                 |
+| rstrip         | function wrapping macro   | -         | strip string right                                                |
+| cindex         | function wrapping macro   | -         | get index of character position in string                         |
+| ccount         | function wrapping macro   | -         | count number of given character in string                         |
+| creplace       | function wrapping macro   | -         | replace character in string with a given character                |
+| p2s            | function wrapping macro   | malloc    |                                                                   |
+| a2s            | function wrapping macro   | malloc    |                                                                   |
+| s2i            | function wrapping macro   | -         | convert string to integer                                         |
+| s2u            | function wrapping macro   | -         | convert string to unsigned integer                                |
+| s2lli          | function wrapping macro   | -         | convert string to long long integer                               |
+| s2llu          | function wrapping macro   | -         | convert string to long long unsigned integer                      |
+| s2f            | function wrapping macro   | -         | convert string to float                                           |
+| s2d            | function wrapping macro   | -         | convert string to double                                          |
+| s2ld           | function wrapping macro   | -         | convert string to long double                                     |
+| hasChar        | comparison wrapping macro | -         | checks if string contains a given character                       |
+| hasString      | comparison wrapping macro | -         | checks if string contains a given string                          |
+| scount         |                           |           |                                                                   |
+| index          |                           |           |                                                                   |
+| replace        |                           |           |                                                                   |
+| compare        |                           |           |                                                                   |
+| find           |                           |           |                                                                   |
+| match          |                           |           |                                                                   |
+| substitute     |                           |           |                                                                   |
+| show           |                           |           | show \n \t ...                                                    |
+| protect        |                           |           | make regex safe                                                   |
+| split          |                           |           |                                                                   |
+|                |                           |           |                                                                   |
+
 
 # Reference
 
@@ -77,4 +133,9 @@ memory.
 ## Terminal Escape Sequences
 
 # ToDo
-
+* 216 color names on/off??
+* new names for cursor and erase escape sequences
+* configurable 1 based indexing for the functions?
+* malloc_size in append/prepend printf("%zu\n", malloc_size(A));
+* should append use strcat instead of strcpy?
+* iterator macro - is it possible?

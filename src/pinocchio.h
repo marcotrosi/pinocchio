@@ -44,6 +44,7 @@ string int_strip(string s, char side, string w);
 size_t int_cindex(string s, char c, signed long long int n, size_t start);
 size_t int_ccount(string s, char c, size_t start, size_t end);
 string int_creplace(string s, char c, char r, size_t n, size_t start, size_t end);
+size_t int_scount(string s, string ss/*, size_t start, size_t end*/);
 
 // iprint
 // uprint
@@ -105,6 +106,7 @@ string int_creplace(string s, char c, char r, size_t n, size_t start, size_t end
 #define cindex(s,c,...)     int_cindex(s, c, CINDEX_OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 1, 0, ##__VA_ARGS__))
 #define ccount(s,c,...)     int_ccount(s, c, OPT_2ARG(COUNT_ARGS(__VA_ARGS__), 0, MAX_LEN, ##__VA_ARGS__))
 #define creplace(s,c,r,...) int_creplace(s, c, r, OPT_3ARG(COUNT_ARGS(__VA_ARGS__), 0, 0, MAX_LEN, ##__VA_ARGS__))
+#define scount(s,ss)        int_scount(s, ss)
 
 #define s2i(x)   strtol(x,NULL,10)
 #define s2u(x)   strtoul(x,NULL,10)

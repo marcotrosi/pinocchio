@@ -939,4 +939,44 @@ string int_creplace(string s, char c, char r, size_t n, size_t start, size_t end
    return s;
 } // >>>
 
+size_t int_scount(string s, string ss/*, size_t start, size_t end*/) // <<<
+{
+   size_t Cnt=0u;
+   string Next  = NULL;
+   string Start = NULL;
+
+   size_t StrLen  = strlen(s);
+   size_t SStrLen = strlen(ss);
+
+   if((s==NULL) | (ss==NULL) | (StrLen==0) | (SStrLen==0))
+   {
+      return Cnt;
+   }
+
+   /*
+   if(end >= StrLen)
+   {
+      end = StrLen;
+   }
+   */
+
+   /* Next = s+start; */
+   Next = s;
+   while(1)
+   {
+      Start = strstr(Next, ss);
+      if( Start != NULL )
+      {
+         Cnt++;
+         Next = Start + SStrLen;
+      }
+      else
+      {
+         break;
+      }
+   }
+
+   return Cnt;
+} // >>>
+
 // vim: fmr=<<<,>>> fdm=marker

@@ -63,48 +63,17 @@ https://www.lua.org/manual/5.4/manual.html#6.4
 
 string.byte (s [, i [, j]])
 string.char (···)
-string.dump (function [, strip])
 string.pack (fmt, v1, v2, ···)
 string.packsize (fmt)
 string.unpack (fmt, s [, pos])
-tostring()
-tonumber()
-
-string.find (s, pattern [, init [, plain]])
-string.gmatch (s, pattern [, init])
-string.gsub (s, pattern, repl [, n])
-string.match (s, pattern [, init])
-
-string.format (formatstring, ···)
-string.len (s)
-string.lower (s)
-string.upper (s)
-string.rep (s, n [, sep])
-string.reverse (s)
-string.sub (s, i [, j])
 
 >>>
 Python <<<
 
 https://docs.python.org/3/library/stdtypes.html#string-methods
 
-str.center(width[, fillchar])
-str.ljust(width[, fillchar])
-str.rjust(width[, fillchar])
-str.lower()
-str.upper()
-str.join(iterable)
-str.strip([chars])
-str.lstrip([chars])
-str.rstrip([chars])
-
-str.count(sub[, start[, end]])
-str.find(sub[, start[, end]])
-str.index(sub[, start[, end]])
-str.partition(sep)
 str.removeprefix(prefix, /)
 str.removesuffix(suffix, /)
-str.replace(old, new[, count])
 str.split(sep=None, maxsplit=-1)
 str.splitlines([keepends])
 
@@ -138,36 +107,3 @@ str.isspace()
 str.istitle()
 str.isupper()
 >>>
- aRT <<<
-
-aRT.alignString_s(String_s, Width_n, Alignment_s)
-aRT.makeStringVisible_s(String_s)
-aRT.deleteEscapeSequences_s(String_s, Key_t)
-aRT.deleteWhiteSpaces_s(KeyWord_s, String_s)
-aRT.splitString_t(s, sep)
-
->>>
-Pinocchio <<<
-:::CHAR:::
-long long int cindex  (string s, char c, size_t n, size_t start                        );
-size_t        ccount  (string s, char c,           size_t start,             size_t end);
-string        creplace(string s, char c, char   r, size_t start, size_t cnt, size_t end);
-
-:::STR:::
-count
-index
-replace
-compare
-
-:::REGEX:::
-find
-match
-substitute
- >>>
-
-* 216 color names on/off??
-* new names for cursor and erase escape sequences
-* configurable 1 based indexing for the functions?
-* malloc_size in append/prepend printf("%zu\n", malloc_size(A));
-* should append use strcat instead of strcpy?
-
