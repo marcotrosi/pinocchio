@@ -1,10 +1,130 @@
 #include "pinocchio.h"
 
-int main(void)
+// Name2Enum <<<
+enum DEMO
 {
-   /* string A = str("foo"); */
-   /* string B = strfmt("bar %d", 3); */
-   string C = strfmt("knockknock");
+   _ALL_,
+   _STR_,
+   _STRFMT_,
+   _LOWER_,
+   _UPPER_,
+   _REV_,
+   _LAST_
+};
+
+char* FUNC[] =
+{
+   "all",
+   "str",
+   "strfmt",
+   "lower",
+   "upper",
+   "rev",
+   NULL
+};
+
+int Name2Enum(char *name)
+{
+   for(int i=0; i < _LAST_ ; i++)
+   {
+      if(!strcmp(name, FUNC[i]))
+      {
+         return i;
+      }
+   }
+   return _ALL_;
+}
+// >>>
+
+int main(int argc, char **argv)
+{
+   int demo = _ALL_; // 0 means demo all
+
+   if(argc == 2)
+   {
+      demo = Name2Enum(argv[1]);
+   }
+
+   // str <<<
+   if((demo == _ALL_) || (demo == _STR_))
+   {
+      print("\n::. demo str() .::");
+      print("string A = str(\"foobar\");");
+      print("string B = str(A);");
+      print("print(A,B);");
+      print("freestr(A,B);");
+      print("------- prints -------");
+      string A = str("foobar");
+      string B = str(A);
+      print(A, B);
+      freestr(A, B);
+   }
+   // >>>
+
+   // strfmt <<<
+   if((demo == _ALL_) || (demo == _STRFMT_))
+   {
+      print("\n::. demo strfmt() .::");
+      print("int a = 42;");
+      print("string C = strfmt(\"foo %d bar\", a);");
+      print("print(C);");
+      print("free(C);");
+      print("------- prints -------");
+      int a = 42;
+      string C = strfmt("foo %d bar", a);
+      print(C);
+      free(C);
+   }
+   // >>>
+
+   // lower <<<
+   if((demo == _ALL_) || (demo == _LOWER_))
+   {
+      print("\n::. demo lower() .::");
+      print("string D = str(\"FOOBAR\");");
+      print("lower(D);");
+      print("print(D);");
+      print("free(D);");
+      print("------- prints -------");
+      string D = str("FOOBAR");
+      lower(D);
+      print(D);
+      free(D);
+   }
+   // >>>
+
+   // upper <<<
+   if((demo == _ALL_) || (demo == _UPPER_))
+   {
+      print("\n::. demo upper() .::");
+      print("string E = str(\"foobar\");");
+      print("upper(E);");
+      print("print(E);");
+      print("free(E);");
+      print("------- prints -------");
+      string E = str("foobar");
+      upper(E);
+      print(E);
+      free(E);
+   }
+   // >>>
+
+   // rev <<<
+   if((demo == _ALL_) || (demo == _REV_))
+   {
+      print("\n::. demo rev() .::");
+      print("string F = str(\"foobar\");");
+      print("upper(F);");
+      print("print(F);");
+      print("freestr(F);");
+      print("------- prints -------");
+      string F = str("foobar");
+      rev(F);
+      print(F);
+      free(F);
+   }
+   // >>>
+
    /* string F = rep("foo", 4, "_"); */
    /* string G = str("abcde"); */
    /* string H = str("abcdefgh"); */
@@ -61,9 +181,9 @@ int main(void)
    /* string R = p2s(A); */
    /* print(R); */
    /* string S = a2s(A); */
-   iprint(int_scount(C, "oc"));
-   iprint(scount(C, "k"));
-   iprint(ccount(C, 'k'));
+   /* iprint(int_scount(C, "oc")); */
+   /* iprint(scount(C, "k")); */
+   /* iprint(ccount(C, 'k')); */
    /* string T = x2s(-1); */
    /* print(T); */
    /* print(strip(U)); */
@@ -160,10 +280,6 @@ int main(void)
    /* printf(CLEAR_UP"FOOBAR\n"); */
    /* printf(CLEAR_SCREEN"FOOBAR\n"); */
    /* printf(RESET"FOOBAR\n"); */
-
-
-   /* freestr(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U); */
-   freestr(C);
 
    return 0;
 }

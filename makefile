@@ -13,7 +13,7 @@ dir:
 	mkdir -p bld doc
 
 demo: dir
-	gcc -Wall src/pinocchio.c tst/demo.c -Isrc -o ./bld/demo && ./bld/demo
+	gcc -Wall src/pinocchio.c tst/demo.c -Isrc -o ./bld/demo && ./bld/demo ${FUNC}
 
 tst: dir
 	gcc -Wall -DNOCOLOR=${NOCOLOR} src/pinocchio.c tst/test.c tst/equal.c tst/test_pinocchio.c -Isrc -Itst -o ./bld/test && ./bld/test ${DEVNULL}
