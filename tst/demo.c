@@ -9,6 +9,7 @@ enum DEMO
    _LOWER_,
    _UPPER_,
    _REV_,
+   _LEN_,
    _LAST_
 };
 
@@ -20,6 +21,7 @@ char* FUNC[] =
    "lower",
    "upper",
    "rev",
+   "len",
    NULL
 };
 
@@ -116,12 +118,26 @@ int main(int argc, char **argv)
       print("string F = str(\"foobar\");");
       print("upper(F);");
       print("print(F);");
-      print("freestr(F);");
+      print("free(F);");
       print("------- prints -------");
       string F = str("foobar");
       rev(F);
       print(F);
       free(F);
+   }
+   // >>>
+
+   // len <<<
+   if((demo == _ALL_) || (demo == _LEN_))
+   {
+      print("\n::. demo len() .::");
+      print("string G = str(\"foobar\");");
+      print("iprint( len(G) );");
+      print("free(G);");
+      print("------- prints -------");
+      string G = str("foobar");
+      iprint( len(G) );
+      free(G);
    }
    // >>>
 

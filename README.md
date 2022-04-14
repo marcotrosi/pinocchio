@@ -27,13 +27,13 @@ memory.
 | [lower](#lower)   | function                  | -         | convert all characters to lower case                              |
 | [upper](#upper)   | function                  | -         | convert all characters to upper case                              |
 | [rev](#rev)       | function                  | -         | reverse string                                                    |
+| [len](#len)       | function                  | -         | get string length                                                 |
 | i2s               | function                  | malloc    | convert signed integer to string                                  |
 | u2s               | function                  | malloc    | convert unsigned integer to string                                |
 | f2s               | function                  | malloc    | convert float to string                                           |
 | c2s               | function                  | malloc    | convert character to string                                       |
 | b2s               | function                  | malloc    | convert boolean to string                                         |
 | x2s               | function                  | malloc    | convert hex value to string                                       |
-| len               | function                  | -         | get string length                                                 |
 | freestr           | function wrapping macro   | -         | free memory                                                       |
 | print             | function wrapping macro   | -         | print strings                                                     |
 | iprint            | function wrapping macro   | -         | print integers                                                    |
@@ -81,16 +81,20 @@ memory.
 ## Defines
 
 ## Typedefs
+### string
+`typedef char* string;`
+
+##### Description
+Short typedef to hide `char *`.
 
 ## String Functions
 
 ----------------------------------------------------------------------------------------------------
 ### str
+`string str(const string s)`
+
 ##### Description
 create string from string literal or string "objects".
-
-##### Signature
-`string str(const string s)`
 
 ##### Parameters
 * s - the string from which to create a string "object"
@@ -112,11 +116,10 @@ create string from string literal or string "objects".
     freestr(A, B);
 ----------------------------------------------------------------------------------------------------
 ### strfmt
+`string strfmt(const string s, ...)`
+
 ##### Description
 create string from format string.
-
-##### Signature
-`string strfmt(const string s, ...)`
 
 ##### Parameters
 * s - the string from which to create a string "object"
@@ -133,11 +136,10 @@ create string from format string.
       free(A);
 ----------------------------------------------------------------------------------------------------
 ### lower
+`string lower(string s)`
+
 ##### Description
 convert all characters to lower case.
-
-##### Signature
-`string lower(string s)`
 
 ##### Parameters
 * s - the string to convert to lower case characters
@@ -153,11 +155,10 @@ convert all characters to lower case.
       free(A);
 ----------------------------------------------------------------------------------------------------
 ### upper
+`string upper(string s)`
+
 ##### Description
 convert all characters to upper case.
-
-##### Signature
-`string upper(string s)`
 
 ##### Parameters
 * s - the string to convert to upper case characters
@@ -173,11 +174,10 @@ convert all characters to upper case.
       free(A);
 ----------------------------------------------------------------------------------------------------
 ### rev
-##### Description
-reverse string
-
-##### Signature
 `string rev(string s)`
+
+##### Description
+reverse string.
 
 ##### Parameters
 * s - the string to reverse
@@ -192,11 +192,29 @@ reverse string
       print(A);
       free(A);
 ----------------------------------------------------------------------------------------------------
+### len
+`size_t len(string s)`
+
+##### Description
+get string length.
+
+##### Parameters
+* s - the string of which to get the length
+
+##### Return
+* size_t - length of s
+
+##### Example
+
+      string A = str("foobar");
+      iprint( len(A) );
+      free(A);
+----------------------------------------------------------------------------------------------------
 ### cindex
+`size_t int_cindex(string s, char c, signed long long int n, size_t start)`
+
 ##### Description
 returns the index of a character in a given string.
-
-`size_t int_cindex(string s, char c, signed long long int n, size_t start)`
 
 ##### Parameters
 * s - the string to search in

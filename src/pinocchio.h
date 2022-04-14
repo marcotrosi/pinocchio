@@ -30,6 +30,13 @@ string b2s(bool x);
 void   int_freestr(int n, ...);
 void   int_print(int n, ...);
 void   int_iprint(int n, ...);
+// uprint
+// xprint
+// fprint
+// cprint
+// pprint
+// bprint
+
 string int_join(int n, ...);
 string int_glue(char *g, int n, ...);
 string int_rep(string s, unsigned int n, string g);
@@ -45,14 +52,6 @@ size_t int_cindex(string s, char c, signed long long int n, size_t start);
 size_t int_ccount(string s, char c, size_t start, size_t end);
 string int_creplace(string s, char c, char r, size_t n, size_t start, size_t end);
 size_t int_scount(string s, string ss/*, size_t start, size_t end*/);
-
-// iprint
-// uprint
-// xprint
-// fprint
-// cprint
-// pprint
-// bprint
 
 // TODO make BUFFERSIZE setable from commandline
 #define BUFFERSIZE 1024
