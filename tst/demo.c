@@ -18,6 +18,7 @@ enum DEMO
    _LEFT_,
    _CENTER_,
    _RIGHT_,
+   _SUB_,
    _LAST_
 };
 
@@ -38,6 +39,7 @@ char* FUNC[] =
    "left",
    "center",
    "right",
+   "sub",
    NULL
 };
 
@@ -296,13 +298,35 @@ int main(int argc, char **argv)
    }
    // >>>
 
-   /* print(sub(H,2,5)); */
-   /* print(sub(H,2,-1)); */
-   /* print(sub(H,2)); */
-   /* print(sub(H,-2)); */
-   /* print(sub(H,-2,-4)); */
-   /* print(sub(NULL,3,5)); */
-   /* print(sub(H,2,2)); */
+   // sub <<<
+   if((demo == _ALL_) || (demo == _SUB_))
+   {
+      print("\n::. demo sub() .::");
+      print("string V = sub(\"foobar2000\",1);");
+      print("print(V);");
+      print("string W = sub(\"foobar2000\",4,6);");
+      print("print(W);");
+      print("string X = sub(\"foobar2000\",-4);");
+      print("print(X);");
+      print("string Y = sub(\"foobar2000\",2,-6);");
+      print("print(Y);");
+      print("string Z = sub(\"foobar2000\",-4,-3);");
+      print("print(Z);");
+      print("freestr(V,W,X,Y,Z);");
+      print(":::::::. prints .::::::");
+      string V = sub("foobar2000",1);
+      print(V);
+      string W = sub("foobar2000",4,6);
+      print(W);
+      string X = sub("foobar2000",-4);
+      print(X);
+      string Y = sub("foobar2000",2,-6);
+      print(Y);
+      string Z = sub("foobar2000",-4,-3);
+      print(Z);
+      freestr(V,W,X,Y,Z);
+   }
+   // >>>
 
    /* printf("%s has k at index %zu\n", C, cindex(C, 'k')); */
    /* printf("%s has fourth k at index %zu\n", C, cindex(C, 'k', 4)); */

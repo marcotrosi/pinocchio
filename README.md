@@ -33,7 +33,7 @@ functions allocate new memory, which means that you have to store the returned a
 | [left](#left)       | function wrapping macro   | malloc    | align string left to width with optional fill character           |
 | [center](#center)   | function wrapping macro   | malloc    | center string to width with optional fill character               |
 | [right](#right)     | function wrapping macro   | malloc    | align string right to width with optional fill character          |
-| sub                 | function wrapping macro   | malloc    | get substring                                                     |
+| [sub](#sub)         | function wrapping macro   | malloc    | get substring                                                     |
 | [lower](#lower)     | function                  | -         | convert all characters to lower case                              |
 | [upper](#upper)     | function                  | -         | convert all characters to upper case                              |
 | [rev](#rev)         | function                  | -         | reverse string                                                    |
@@ -409,6 +409,35 @@ if the width is smaller than the string length, then the string gets shortened.
       print(A);
       free(A);
 ----------------------------------------------------------------------------------------------------
+### sub
+`#define sub(s, i [,j])`
+
+##### Description
+get substring from string starting from index `i` til end of string, or til index `j`.
+first index from the left is 1, and -1 from the right.
+
+##### Parameters
+* s - the string to align
+* i - start index
+* j - (optional) end index, default -1
+
+##### Return
+* string - address of created string
+
+##### Examples
+
+      string A = sub("foobar2000",1);
+      print(A);
+      string B = sub("foobar2000",4,6);
+      print(B);
+      string C = sub("foobar2000",-4);
+      print(C);
+      string D = sub("foobar2000",2,-6);
+      print(D);
+      string E = sub("foobar2000",-4,-3);
+      print(E);
+      freestr(A,B,C,D,E);
+----------------------------------------------------------------------------------------------------
 ### cindex
 `size_t int_cindex(string s, char c, signed long long int n, size_t start)`
 
@@ -446,3 +475,4 @@ returns the index of a character in a given string.
 * iterator macro - is it possible?
 * should I get rid of join as it is the same as glue("", ...) or keep it for convenience?
 * would it be better if append/prepend would use malloc instead of realloc? this would allow literal strings as input, but would force users to store the new string
+* should the third sub(s,i,j) parameter be the length instead of the end index?
