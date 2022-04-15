@@ -17,63 +17,62 @@ want to write C code. This lib is only supposed to take away my pain, and not mo
 Most functions are actually macros that wrap a function, which allowed me to get optional
 parameters. The following table provides this information. You can also see in this table which
 functions allocate new memory, which means that you have to store the returned address to be able to
-`free()` them later. Some functions work directly on the string and don't allocate or re-allocate
-memory.
+`free()` them later. Some functions work directly on the string and don't allocate or re-allocate memory.
 
-| Name              | Type                      | Memory    | Description                                                       |
-|-------------------|---------------------------|-----------|-------------------------------------------------------------------|
-| [str](#str)       | function                  | malloc    | create string from string literal or string "objects"             |
-| [strfmt](#strfmt) | function                  | malloc    | create string from format string                                  |
-| [lower](#lower)   | function                  | -         | convert all characters to lower case                              |
-| [upper](#upper)   | function                  | -         | convert all characters to upper case                              |
-| [rev](#rev)       | function                  | -         | reverse string                                                    |
-| [len](#len)       | function                  | -         | get string length                                                 |
-| i2s               | function                  | malloc    | convert signed integer to string                                  |
-| u2s               | function                  | malloc    | convert unsigned integer to string                                |
-| f2s               | function                  | malloc    | convert float to string                                           |
-| c2s               | function                  | malloc    | convert character to string                                       |
-| b2s               | function                  | malloc    | convert boolean to string                                         |
-| x2s               | function                  | malloc    | convert hex value to string                                       |
-| freestr           | function wrapping macro   | -         | free memory                                                       |
-| print             | function wrapping macro   | -         | print strings                                                     |
-| iprint            | function wrapping macro   | -         | print integers                                                    |
-| join              | function wrapping macro   | malloc    | join strings                                                      |
-| glue              | function wrapping macro   | malloc    | join strings with a separator string                              |
-| rep               | function wrapping macro   | malloc    | repeat string with an optional separator string                   |
-| append            | function wrapping macro   | realloc   | append to string                                                  |
-| prepend           | function wrapping macro   | realloc   | prepend to string                                                 |
-| sub               | function wrapping macro   | malloc    | get substring                                                     |
-| center            | function wrapping macro   | malloc    | center string to width with optional fill character               |
-| left              | function wrapping macro   | malloc    | align string left to width with optional fill character           |
-| right             | function wrapping macro   | malloc    | align string right to width with optional fill character          |
-| strip             | function wrapping macro   | -         | strip string left and right                                       |
-| lstrip            | function wrapping macro   | -         | strip string left                                                 |
-| rstrip            | function wrapping macro   | -         | strip string right                                                |
-| cindex            | function wrapping macro   | -         | get index of character position in string                         |
-| ccount            | function wrapping macro   | -         | count number of given character in string                         |
-| creplace          | function wrapping macro   | -         | replace character in string with a given character                |
-| p2s               | function wrapping macro   | malloc    |                                                                   |
-| a2s               | function wrapping macro   | malloc    |                                                                   |
-| s2i               | function wrapping macro   | -         | convert string to integer                                         |
-| s2u               | function wrapping macro   | -         | convert string to unsigned integer                                |
-| s2lli             | function wrapping macro   | -         | convert string to long long integer                               |
-| s2llu             | function wrapping macro   | -         | convert string to long long unsigned integer                      |
-| s2f               | function wrapping macro   | -         | convert string to float                                           |
-| s2d               | function wrapping macro   | -         | convert string to double                                          |
-| s2ld              | function wrapping macro   | -         | convert string to long double                                     |
-| hasChar           | comparison wrapping macro | -         | checks if string contains a given character                       |
-| hasString         | comparison wrapping macro | -         | checks if string contains a given string                          |
-| scount            |                           |           |                                                                   |
-| index             |                           |           |                                                                   |
-| replace           |                           |           |                                                                   |
-| compare           |                           |           |                                                                   |
-| find              |                           |           |                                                                   |
-| match             |                           |           |                                                                   |
-| substitute        |                           |           |                                                                   |
-| show              |                           |           | show \n \t ...                                                    |
-| protect           |                           |           | make regex safe                                                   |
-| split             |                           |           |                                                                   |
-|                   |                           |           |                                                                   |
+| Name                | Type                      | Memory    | Description                                                       |
+|---------------------|---------------------------|-----------|-------------------------------------------------------------------|
+| [str](#str)         | function                  | malloc    | create string from string literal or string "objects"             |
+| [strfmt](#strfmt)   | function                  | malloc    | create string from format string                                  |
+| [freestr](#freestr) | function wrapping macro   | -         | free allocated memory                                             |
+| [len](#len)         | function                  | -         | get string length                                                 |
+| [append](#append)   | function wrapping macro   | realloc   | append to string                                                  |
+| [prepend](#prepend) | function wrapping macro   | realloc   | prepend to string                                                 |
+| [join](#join)       | function wrapping macro   | malloc    | join strings                                                      |
+| [glue](#glue)       | function wrapping macro   | malloc    | join strings with a separator string                              |
+| [rep](#rep)         | function wrapping macro   | malloc    | repeat string with an optional separator string                   |
+| [left](#left)       | function wrapping macro   | malloc    | align string left to width with optional fill character           |
+| [center](#center)   | function wrapping macro   | malloc    | center string to width with optional fill character               |
+| [right](#right)     | function wrapping macro   | malloc    | align string right to width with optional fill character          |
+| sub                 | function wrapping macro   | malloc    | get substring                                                     |
+| [lower](#lower)     | function                  | -         | convert all characters to lower case                              |
+| [upper](#upper)     | function                  | -         | convert all characters to upper case                              |
+| [rev](#rev)         | function                  | -         | reverse string                                                    |
+| i2s                 | function                  | malloc    | convert signed integer to string                                  |
+| u2s                 | function                  | malloc    | convert unsigned integer to string                                |
+| f2s                 | function                  | malloc    | convert float to string                                           |
+| c2s                 | function                  | malloc    | convert character to string                                       |
+| b2s                 | function                  | malloc    | convert boolean to string                                         |
+| x2s                 | function                  | malloc    | convert hex value to string                                       |
+| p2s                 | function wrapping macro   | malloc    |                                                                   |
+| a2s                 | function wrapping macro   | malloc    |                                                                   |
+| s2i                 | function wrapping macro   | -         | convert string to integer                                         |
+| s2u                 | function wrapping macro   | -         | convert string to unsigned integer                                |
+| s2lli               | function wrapping macro   | -         | convert string to long long integer                               |
+| s2llu               | function wrapping macro   | -         | convert string to long long unsigned integer                      |
+| s2f                 | function wrapping macro   | -         | convert string to float                                           |
+| s2d                 | function wrapping macro   | -         | convert string to double                                          |
+| s2ld                | function wrapping macro   | -         | convert string to long double                                     |
+| print               | function wrapping macro   | -         | print strings                                                     |
+| iprint              | function wrapping macro   | -         | print integers                                                    |
+| strip               | function wrapping macro   | -         | strip string left and right                                       |
+| lstrip              | function wrapping macro   | -         | strip string left                                                 |
+| rstrip              | function wrapping macro   | -         | strip string right                                                |
+| cindex              | function wrapping macro   | -         | get index of character position in string                         |
+| ccount              | function wrapping macro   | -         | count number of given character in string                         |
+| creplace            | function wrapping macro   | -         | replace character in string with a given character                |
+| hasChar             | comparison wrapping macro | -         | checks if string contains a given character                       |
+| hasString           | comparison wrapping macro | -         | checks if string contains a given string                          |
+| scount              |                           |           |                                                                   |
+| index               |                           |           |                                                                   |
+| replace             |                           |           |                                                                   |
+| compare             |                           |           |                                                                   |
+| find                |                           |           |                                                                   |
+| match               |                           |           |                                                                   |
+| substitute          |                           |           |                                                                   |
+| show                |                           |           | show \n \t ...                                                    |
+| protect             |                           |           | make regex safe                                                   |
+| split               |                           |           |                                                                   |
+|                     |                           |           |                                                                   |
 
 
 # Reference
@@ -134,6 +133,21 @@ create string from format string.
       string A = strfmt("foo %d bar", a);
       print(A);
       free(A);
+----------------------------------------------------------------------------------------------------
+### freestr
+`#define freestr(...)`
+
+##### Description
+free all strings passed as args.
+
+##### Parameters
+* ... - 1 or more strings to free
+
+##### Example
+
+      string A = str("foo");
+      string B = str("bar");
+      free(A,B);
 ----------------------------------------------------------------------------------------------------
 ### lower
 `string lower(string s)`
@@ -210,6 +224,191 @@ get string length.
       iprint( len(A) );
       free(A);
 ----------------------------------------------------------------------------------------------------
+### append
+`#define append(s, ...)`
+
+##### Description
+append strings to string.
+
+##### Parameters
+* s - the string to which to append
+* ... - 1 or more strings to append
+
+##### Return
+* string - potential new address of s
+
+##### Example
+
+      string A = str("foobar");
+      append(A, "2000", " is da thing");
+      print(A);
+      free(A);
+----------------------------------------------------------------------------------------------------
+### prepend
+`#define prepend(s, ...)`
+
+##### Description
+prepend strings to string.
+
+##### Parameters
+* s - the string to which to prepend
+* ... - 1 or more strings to prepend
+
+##### Return
+* string - potential new address of s
+
+##### Example
+
+      string A = str("foobar");
+      prepend(A, "this", " is ");
+      print(A);
+      free(A);
+----------------------------------------------------------------------------------------------------
+### join
+`#define join(...)`
+
+##### Description
+join strings.
+
+##### Parameters
+* ... - 1 or more strings to join
+
+##### Return
+* string - address of created string
+
+##### Example
+
+      string A = join("this ", "is ", "foobar");
+      print(A);
+      free(A);
+----------------------------------------------------------------------------------------------------
+### glue
+`#define glue(g, ...)`
+
+##### Description
+join strings with a glue string.
+
+##### Parameters
+* g - the glue string
+* ... - 1 or more strings to glue
+
+##### Return
+* string - address of created string
+
+##### Example
+
+      string A = glue(" ", "this", "is", "foobar");
+      print(A);
+      free(A);
+----------------------------------------------------------------------------------------------------
+### rep
+`#define rep(s, n [,g])`
+
+##### Description
+repeat string N times with optional glue string.
+
+##### Parameters
+* s - the string to repeat
+* n - number of repititions
+* g - (optional) glue string
+
+##### Return
+* string - address of created string
+
+##### Example
+
+      string A = rep("foo", 3, "_");
+      string B = rep("foo", 3);
+      print(A, B);
+      freestr(A,B);
+----------------------------------------------------------------------------------------------------
+### left
+`#define left(s, w [,f])`
+
+##### Description
+create left aligned string according to width, with an optional fill character.
+if the width is smaller than the string length, then the string gets shortened.
+
+##### Parameters
+* s - the string to align
+* w - width
+* f - (optional) fill character, default is space
+
+##### Return
+* string - address of created string
+
+##### Example 1 - using a fill character
+
+      string A = left("left aligned", 20, '_');
+      print(A);
+      free(A);
+
+##### Example 2 - width smaller than string length
+
+      string A = left("left aligned", 10);
+      print(A);
+      free(A);
+----------------------------------------------------------------------------------------------------
+### center
+`#define center(s, w [,f])`
+
+##### Description
+create centered string according to width, with an optional fill character.
+if the width is smaller than the string length, then the string gets shortened.
+
+##### Parameters
+* s - the string to align
+* w - width
+* f - (optional) fill character, default is space
+
+##### Return
+* string - address of created string
+
+##### Example 1 - using a fill character
+
+      string A = center("centered text", 20, '_');
+      print(A);
+      free(A);
+
+##### Example 2 - width smaller than string length
+
+      string A = center("centered text", 10);
+      print(A);
+      free(A);
+----------------------------------------------------------------------------------------------------
+### right
+`#define right(s, w [,f])`
+
+##### Description
+create right aligned string according to width, with an optional fill character.
+if the width is smaller than the string length, then the string gets shortened.
+
+##### Parameters
+* s - the string to align
+* w - width
+* f - (optional) fill character, default is space
+
+##### Return
+* string - address of created string
+
+##### Example 1 - simple right aligned
+
+      string A = right("right aligned", 20);
+      print(A);
+      free(A);
+
+##### Example 2 - using a fill character
+
+      string A = right("right aligned", 20, '_');
+      print(A);
+      free(A);
+
+##### Example 3 - width smaller than string length
+
+      string A = right("right aligned", 10);
+      print(A);
+      free(A);
+----------------------------------------------------------------------------------------------------
 ### cindex
 `size_t int_cindex(string s, char c, signed long long int n, size_t start)`
 
@@ -245,3 +444,5 @@ returns the index of a character in a given string.
 * malloc_size in append/prepend printf("%zu\n", malloc_size(A));
 * should append use strcat instead of strcpy?
 * iterator macro - is it possible?
+* should I get rid of join as it is the same as glue("", ...) or keep it for convenience?
+* would it be better if append/prepend would use malloc instead of realloc? this would allow literal strings as input, but would force users to store the new string

@@ -10,6 +10,14 @@ enum DEMO
    _UPPER_,
    _REV_,
    _LEN_,
+   _APPEND_,
+   _PREPEND_,
+   _JOIN_,
+   _GLUE_,
+   _REP_,
+   _LEFT_,
+   _CENTER_,
+   _RIGHT_,
    _LAST_
 };
 
@@ -22,6 +30,14 @@ char* FUNC[] =
    "upper",
    "rev",
    "len",
+   "append",
+   "prepend",
+   "join",
+   "glue",
+   "rep",
+   "left",
+   "center",
+   "right",
    NULL
 };
 
@@ -34,7 +50,7 @@ int Name2Enum(char *name)
          return i;
       }
    }
-   return _ALL_;
+   return _LAST_;
 }
 // >>>
 
@@ -45,6 +61,11 @@ int main(int argc, char **argv)
    if(argc == 2)
    {
       demo = Name2Enum(argv[1]);
+      if(demo == _LAST_)
+      {
+         printf("no demo for '%s'\n", argv[1]);
+         exit(0);
+      }
    }
 
    // str <<<
@@ -55,7 +76,7 @@ int main(int argc, char **argv)
       print("string B = str(A);");
       print("print(A,B);");
       print("freestr(A,B);");
-      print("------- prints -------");
+      print(":::::::. prints .::::::");
       string A = str("foobar");
       string B = str(A);
       print(A, B);
@@ -71,7 +92,7 @@ int main(int argc, char **argv)
       print("string C = strfmt(\"foo %d bar\", a);");
       print("print(C);");
       print("free(C);");
-      print("------- prints -------");
+      print(":::::::. prints .::::::");
       int a = 42;
       string C = strfmt("foo %d bar", a);
       print(C);
@@ -87,7 +108,7 @@ int main(int argc, char **argv)
       print("lower(D);");
       print("print(D);");
       print("free(D);");
-      print("------- prints -------");
+      print(":::::::. prints .::::::");
       string D = str("FOOBAR");
       lower(D);
       print(D);
@@ -103,7 +124,7 @@ int main(int argc, char **argv)
       print("upper(E);");
       print("print(E);");
       print("free(E);");
-      print("------- prints -------");
+      print(":::::::. prints .::::::");
       string E = str("foobar");
       upper(E);
       print(E);
@@ -119,7 +140,7 @@ int main(int argc, char **argv)
       print("upper(F);");
       print("print(F);");
       print("free(F);");
-      print("------- prints -------");
+      print(":::::::. prints .::::::");
       string F = str("foobar");
       rev(F);
       print(F);
@@ -134,31 +155,147 @@ int main(int argc, char **argv)
       print("string G = str(\"foobar\");");
       print("iprint( len(G) );");
       print("free(G);");
-      print("------- prints -------");
+      print(":::::::. prints .::::::");
       string G = str("foobar");
       iprint( len(G) );
       free(G);
    }
    // >>>
 
-   /* string F = rep("foo", 4, "_"); */
-   /* string G = str("abcde"); */
-   /* string H = str("abcdefgh"); */
-   /* string I = center("center", 20); */
-   /* string J = center("center", 8, '_'); */
-   /* string K = left("left", 6, '_'); */
-   /* string L = right("right", 8, '_'); */
-   /* string U = str("   foo bar   "); */
+   // append <<<
+   if((demo == _ALL_) || (demo == _APPEND_))
+   {
+      print("\n::. demo append() .::");
+      print("string H = str(\"foobar\");");
+      print("append(H, \"2000\", \" is da thing\");");
+      print("print(H);");
+      print("free(H);");
+      print(":::::::. prints .::::::");
+      string H = str("foobar");
+      append(H, "2000", " is da thing");
+      print(H);
+      free(H);
+   }
+   // >>>
 
-   /* print(A, B, "super", NULL, C, "aaaa", "bbbbb", "ccccc"); */
-   /* print(); // print empty line */
-   /* string D = join(A, B, "super", NULL, C, "aaaa", "bbbbb", "ccccc"); */
-   /* print(D); */
-   /* string E = glue("|", A, B, "super", NULL, C, "aaaa", "bbbbb", "ccccc"); */
-   /* print(E); */
-   /* print(upper(E)); */
-   /* print(F); */
-   /* print(rev(G)); */
+   // prepend <<<
+   if((demo == _ALL_) || (demo == _PREPEND_))
+   {
+      print("\n::. demo prepend() .::");
+      print("string I = str(\"foobar\");");
+      print("prepend(I, \"this\", \" is \");");
+      print("print(I);");
+      print("free(I);");
+      print(":::::::. prints .::::::");
+      string I = str("foobar");
+      prepend(I, "this", " is ");
+      print(I);
+      free(I);
+   }
+   // >>>
+
+   // join <<<
+   if((demo == _ALL_) || (demo == _JOIN_))
+   {
+      print("\n::. demo join() .::");
+      print("string J = str(\"foobar\");");
+      print("string K = join(\"this\", \" \", \"is \", J);");
+      print("print(K);");
+      print("freestr(J,K);");
+      print(":::::::. prints .::::::");
+      string J = str("foobar");
+      string K = join("this", " ", "is ", J);
+      print(K);
+      freestr(J,K);
+   }
+   // >>>
+
+   // glue <<<
+   if((demo == _ALL_) || (demo == _GLUE_))
+   {
+      print("\n::. demo glue() .::");
+      print("string L = str(\"foobar\");");
+      print("string M = glue(\" \", \"this\", \"is\", L);");
+      print("print(M);");
+      print("freestr(L,M);");
+      print(":::::::. prints .::::::");
+      string L = str("foobar");
+      string M = join("this", " ", "is ", L);
+      print(M);
+      freestr(L,M);
+   }
+   // >>>
+
+   // rep <<<
+   if((demo == _ALL_) || (demo == _REP_))
+   {
+      print("\n::. demo rep() .::");
+      print("string N = rep(\"foo\", 3, \"_\");");
+      print("string O = rep(\"foo\", 3);");
+      print("print(N, O);");
+      print("freestr(N,O);");
+      print(":::::::. prints .::::::");
+      string N = rep("foo", 3, "_");
+      string O = rep("foo", 3);
+      print(N,O);
+      freestr(N,O);
+   }
+   // >>>
+
+   // left <<<
+   if((demo == _ALL_) || (demo == _LEFT_))
+   {
+      print("\n::. demo left() .::");
+      print("string P = left(\"left aligned\", 10);");
+      print("string Q = left(\"left aligned\", 20, '_');");
+      print("print(P);");
+      print("print(Q);");
+      print("freestr(P,Q);");
+      print(":::::::. prints .::::::");
+      string P = left("left aligned", 10);
+      string Q = left("left aligned", 20, '_');
+      print(P);
+      print(Q);
+      freestr(P,Q);
+   }
+   // >>>
+
+   // center <<<
+   if((demo == _ALL_) || (demo == _CENTER_))
+   {
+      print("\n::. demo center() .::");
+      print("string R = center(\"centered text\", 10);");
+      print("string S = center(\"centered text\", 20, '-');");
+      print("print(R);");
+      print("print(S);");
+      print("freestr(R,S);");
+      print(":::::::. prints .::::::");
+      string R = center("centered text", 10);
+      string S = center("centered text", 20, '-');
+      print(R);
+      print(S);
+      freestr(R,S);
+   }
+   // >>>
+
+   // right <<<
+   if((demo == _ALL_) || (demo == _RIGHT_))
+   {
+      print("\n::. demo right() .::");
+      print("string T = right(\"right aligned\", 10);");
+      print("string U = right(\"right aligned\", 20, '-');");
+      print("print(T);");
+      print("print(U);");
+      print("freestr(T,U);");
+      print(":::::::. prints .::::::");
+      string T = right("right aligned", 10);
+      string U = right("right aligned", 20, '-');
+      print(T);
+      print(U);
+      freestr(T,U);
+   }
+   // >>>
+
    /* print(sub(H,2,5)); */
    /* print(sub(H,2,-1)); */
    /* print(sub(H,2)); */
@@ -166,8 +303,7 @@ int main(int argc, char **argv)
    /* print(sub(H,-2,-4)); */
    /* print(sub(NULL,3,5)); */
    /* print(sub(H,2,2)); */
-   /* printf("%zu\n", len("pinocchio")); */
-   /* printf("%zu\n", len(NULL)); */
+
    /* printf("%s has k at index %zu\n", C, cindex(C, 'k')); */
    /* printf("%s has fourth k at index %zu\n", C, cindex(C, 'k', 4)); */
    /* printf("%s has fourth k at index %zu\n", C, cindex(C, 'k', -2)); */
@@ -177,8 +313,6 @@ int main(int argc, char **argv)
    /* printf("%s has %zu k's\n", C, ccount(C, 'k', 2, 7)); // 2 */
    /* printf("knockknock is now %s\n", creplace(C, 'k', 'g')); // gnocggnocg */
    /* printf("gnocggnocg is now %s\n", creplace(C, 'g', 'k', 2)); // knockgnocg */
-   /* print(append(C,", who is", " ", "there?")); */
-   /* print(prepend(C,"Hey, ", "listen!", "   ")); */
    /* print(I); */
    /* print(J); */
    /* print(K); */
