@@ -826,7 +826,7 @@ string int_strip(string s, char side, string charlist) // <<<
 
 } // >>>
 
-size_t int_cindex(string s, char c, signed long long int n, size_t start) // <<<
+size_t int_cindex(string s, char c, int n, size_t start) // <<<
 {
    size_t Cnt = 0; // match counter
 

@@ -6,6 +6,7 @@ enum DEMO
    _ALL_,
    _STR_,
    _STRFMT_,
+   _FREESTR_,
    _LOWER_,
    _UPPER_,
    _REV_,
@@ -19,6 +20,13 @@ enum DEMO
    _CENTER_,
    _RIGHT_,
    _SUB_,
+   _STRIP_,
+   _LSTRIP_,
+   _RSTRIP_,
+   _CINDEX_,
+   _CCOUNT_,
+   _CREPLACE_,
+   _ESCCOLOR_,
    _LAST_
 };
 
@@ -27,6 +35,7 @@ char* FUNC[] =
    "all",
    "str",
    "strfmt",
+   "freestr",
    "lower",
    "upper",
    "rev",
@@ -40,6 +49,13 @@ char* FUNC[] =
    "center",
    "right",
    "sub",
+   "strip",
+   "lstrip",
+   "rstrip",
+   "cindex",
+   "ccount",
+   "creplace",
+   "esccolor",
    NULL
 };
 
@@ -102,51 +118,16 @@ int main(int argc, char **argv)
    }
    // >>>
 
-   // lower <<<
-   if((demo == _ALL_) || (demo == _LOWER_))
+   // freestr <<<
+   if((demo == _ALL_) || (demo == _FREESTR_))
    {
-      print("\n::. demo lower() .::");
-      print("string D = str(\"FOOBAR\");");
-      print("lower(D);");
-      print("print(D);");
-      print("free(D);");
-      print(":::::::. prints .::::::");
-      string D = str("FOOBAR");
-      lower(D);
-      print(D);
-      free(D);
-   }
-   // >>>
-
-   // upper <<<
-   if((demo == _ALL_) || (demo == _UPPER_))
-   {
-      print("\n::. demo upper() .::");
-      print("string E = str(\"foobar\");");
-      print("upper(E);");
-      print("print(E);");
-      print("free(E);");
-      print(":::::::. prints .::::::");
-      string E = str("foobar");
-      upper(E);
-      print(E);
-      free(E);
-   }
-   // >>>
-
-   // rev <<<
-   if((demo == _ALL_) || (demo == _REV_))
-   {
-      print("\n::. demo rev() .::");
-      print("string F = str(\"foobar\");");
-      print("upper(F);");
-      print("print(F);");
-      print("free(F);");
-      print(":::::::. prints .::::::");
-      string F = str("foobar");
-      rev(F);
-      print(F);
-      free(F);
+      print("\n::. demo freestr() .::");
+      print("string A = str(\"foo\");");
+      print("string B = str(\"bar\");");
+      print("freestr(A,B);");
+      string A = str("foo");
+      string B = str("bar");
+      freestr(A,B);
    }
    // >>>
 
@@ -244,6 +225,54 @@ int main(int argc, char **argv)
    }
    // >>>
 
+   // lower <<<
+   if((demo == _ALL_) || (demo == _LOWER_))
+   {
+      print("\n::. demo lower() .::");
+      print("string D = str(\"FOOBAR\");");
+      print("lower(D);");
+      print("print(D);");
+      print("free(D);");
+      print(":::::::. prints .::::::");
+      string D = str("FOOBAR");
+      lower(D);
+      print(D);
+      free(D);
+   }
+   // >>>
+
+   // upper <<<
+   if((demo == _ALL_) || (demo == _UPPER_))
+   {
+      print("\n::. demo upper() .::");
+      print("string E = str(\"foobar\");");
+      print("upper(E);");
+      print("print(E);");
+      print("free(E);");
+      print(":::::::. prints .::::::");
+      string E = str("foobar");
+      upper(E);
+      print(E);
+      free(E);
+   }
+   // >>>
+
+   // rev <<<
+   if((demo == _ALL_) || (demo == _REV_))
+   {
+      print("\n::. demo rev() .::");
+      print("string F = str(\"foobar\");");
+      print("upper(F);");
+      print("print(F);");
+      print("free(F);");
+      print(":::::::. prints .::::::");
+      string F = str("foobar");
+      rev(F);
+      print(F);
+      free(F);
+   }
+   // >>>
+
    // left <<<
    if((demo == _ALL_) || (demo == _LEFT_))
    {
@@ -328,39 +357,138 @@ int main(int argc, char **argv)
    }
    // >>>
 
-   /* printf("%s has k at index %zu\n", C, cindex(C, 'k')); */
-   /* printf("%s has fourth k at index %zu\n", C, cindex(C, 'k', 4)); */
-   /* printf("%s has fourth k at index %zu\n", C, cindex(C, 'k', -2)); */
-   /* printf("%s has second o at index %zu\n", C, cindex(C, 'o', 1, 4)); */
-   /* printf("%s has %zu k's\n", C, ccount(C, 'k'));       // 4 */
-   /* printf("%s has %zu k's\n", C, ccount(C, 'k', 2));    // 3 */
-   /* printf("%s has %zu k's\n", C, ccount(C, 'k', 2, 7)); // 2 */
-   /* printf("knockknock is now %s\n", creplace(C, 'k', 'g')); // gnocggnocg */
-   /* printf("gnocggnocg is now %s\n", creplace(C, 'g', 'k', 2)); // knockgnocg */
-   /* print(I); */
-   /* print(J); */
-   /* print(K); */
-   /* print(L); */
+   // strip <<<
+   if((demo == _ALL_) || (demo == _STRIP_))
+   {
+      print("\n::. demo strip() .::");
+      print("string AA = str(\"   foobar   \n\");");
+      print("strip(AA);");
+      print("print(AA);");
+      print("string AB = str(\"___foobar___\");");
+      print("print(strip(AB, \"_\"));");
+      print("freestr(AA,AB);");
+      print(":::::::. prints .::::::");
+      string AA = str("   foobar   \n");
+      strip(AA);
+      print(AA);
+      string AB = str("___foobar___");
+      print(strip(AB, "_"));
+      freestr(AA,AB);
+   }
+   // >>>
+
+   // lstrip <<<
+   if((demo == _ALL_) || (demo == _LSTRIP_))
+   {
+      print("\n::. demo lstrip() .::");
+      print("string AC = str(\"   foobar   \n\");");
+      print("lstrip(AC);");
+      print("print(AC);");
+      print("string AD = str(\"___foobar___\");");
+      print("print(lstrip(AD, \"_\"));");
+      print("freestr(AC,AD);");
+      print(":::::::. prints .::::::");
+      string AC = str("   foobar   \n");
+      lstrip(AC);
+      print(AC);
+      string AD = str("___foobar___");
+      print(lstrip(AD, "_"));
+      freestr(AC,AD);
+   }
+   // >>>
+
+   // rstrip <<<
+   if((demo == _ALL_) || (demo == _RSTRIP_))
+   {
+      print("\n::. demo rstrip() .::");
+      print("string AE = str(\"   foobar   \n\");");
+      print("rstrip(AE);");
+      print("print(AE);");
+      print("string AF = str(\"___foobar___\");");
+      print("print(rstrip(AF, \"_\"));");
+      print("freestr(AE,AF);");
+      print(":::::::. prints .::::::");
+      string AE = str("   foobar   \n");
+      rstrip(AE);
+      print(AE);
+      string AF = str("___foobar___");
+      print(rstrip(AF, "_"));
+      freestr(AE,AF);
+   }
+   // >>>
+
+   // cindex <<<
+   if((demo == _ALL_) || (demo == _CINDEX_))
+   {
+      print("\n::. demo cindex() .::");
+      print("string AG = str(\"knock knock\");");
+      print("iprint(cindex(AG,'o'));");
+      print("iprint(cindex(AG,'o',2));");
+      print("iprint(cindex(AG,'k',2,3));");
+      print("iprint(cindex(AG,'o',-1));");
+      print("free(AG);");
+      print(":::::::. prints .::::::");
+      string AG = str("knock knock");
+      iprint(cindex(AG,'o'));
+      iprint(cindex(AG,'o',2));
+      iprint(cindex(AG,'k',2,3));
+      iprint(cindex(AG,'o',-1));
+      free(AG);
+   }
+   // >>>
+
+   // ccount <<<
+   if((demo == _ALL_) || (demo == _CCOUNT_))
+   {
+      print("\n::. demo ccount() .::");
+      print("string AH = str(\"knock knock\");");
+      print("iprint(ccount(AH,'o'));");
+      print("iprint(ccount(AH,'o',3));");
+      print("iprint(ccount(AH,'k',2,8));");
+      print("free(AH);");
+      print(":::::::. prints .::::::");
+      string AH = str("knock knock");
+      iprint(ccount(AH,'o'));
+      iprint(ccount(AH,'o',3));
+      iprint(ccount(AH,'k',2,8));
+      free(AH);
+   }
+   // >>>
+
+   // creplace <<<
+   if((demo == _ALL_) || (demo == _CREPLACE_))
+   {
+      print("\n::. demo creplace() .::");
+      print("string AI = str(\"knock knock\");");
+      print("print(creplace(AI,'k','g'));");
+      print("print(creplace(AI,'g','k',2));");
+      print("print(creplace(AI,'k','g',2));");
+      print("print(creplace(AI,'g','k',2,3,9));");
+      print("print(creplace(AI,'k','g',1,6));");
+      print("free(AI);");
+      print(":::::::. prints .::::::");
+      string AI = str("knock knock");
+      print(creplace(AI,'k','g'));
+      print(creplace(AI,'g','k',2));
+      print(creplace(AI,'k','g',2));
+      print(creplace(AI,'g','k',2,3,9));
+      print(creplace(AI,'k','g',1,6));
+      free(AI);
+   }
+   // >>>
+
    /* iprint(5,0,-2,1323,282474); */
    /* string M = i2s(-456747844848); */
-   /* print(M); */
    /* string N = u2s(94567478448480); */
-   /* print(N); */
    /* string O = f2s(9456747.8448480); */
-   /* print(O); */
    /* string P = c2s('x'); */
-   /* print(P); */
    /* string Q = b2s(false); */
-   /* print(Q); */
    /* string R = p2s(A); */
-   /* print(R); */
    /* string S = a2s(A); */
    /* iprint(int_scount(C, "oc")); */
    /* iprint(scount(C, "k")); */
    /* iprint(ccount(C, 'k')); */
    /* string T = x2s(-1); */
-   /* print(T); */
-   /* print(strip(U)); */
    /*  */
    /* printf("%lli\n", s2lli(M)); */
    /* printf("%llu\n", s2llu(N)); */
@@ -375,74 +503,79 @@ int main(int argc, char **argv)
    /* { */
    /*    printf("no\n"); */
    /* } */
-   /*  */
-   /* printf(BOLD"Foo"NOBOLD"Bar"OFF"\n"); */
-   /* printf(DIM"Foo"NODIM"Bar"OFF"\n"); */
-   /* printf(ITALIC"Foo"NOITALIC"Bar"OFF"\n"); */
-   /* printf(UNDERLINE"Foo"NOUNDERLINE"Bar"OFF"\n"); */
-   /* printf(BLINK"Foo"NOBLINK"Bar"OFF"\n"); */
-   /* printf(REVERSE"Foo"NOREVERSE"Bar"OFF"\n"); */
-   /* printf(INVISIBLE"Foo"NOINVISIBLE"Bar"OFF"\n"); */
-   /*  */
-   /* printf(BLACK"FooBar"OFF"\n"); */
-   /* printf(BRTBLACK"FooBar"OFF"\n"); */
-   /* printf(RED"FooBar"OFF"\n"); */
-   /* printf(BRTRED"FooBar"OFF"\n"); */
-   /* printf(GREEN"FooBar"OFF"\n"); */
-   /* printf(BRTGREEN"FooBar"OFF"\n"); */
-   /* printf(YELLOW"FooBar"OFF"\n"); */
-   /* printf(BRTYELLOW"FooBar"OFF"\n"); */
-   /* printf(BLUE"FooBar"OFF"\n"); */
-   /* printf(BRTBLUE"FooBar"OFF"\n"); */
-   /* printf(MAGENTA"FooBar"OFF"\n"); */
-   /* printf(BRTMAGENTA"FooBar"OFF"\n"); */
-   /* printf(CYAN"FooBar"OFF"\n"); */
-   /* printf(BRTCYAN"FooBar"OFF"\n"); */
-   /* printf(WHITE"FooBar"OFF"\n"); */
-   /* printf(BRTWHITE"FooBar"OFF"\n"); */
-   /*  */
-   /* printf(GREY10"FooBar"OFF"\n"); */
-   /* printf(GREY11"FooBar"OFF"\n"); */
-   /* printf(GREY12"FooBar"OFF"\n"); */
-   /* printf(GREY13"FooBar"OFF"\n"); */
-   /* printf(GREY14"FooBar"OFF"\n"); */
-   /* printf(GREY15"FooBar"OFF"\n"); */
-   /* printf(GREY16"FooBar"OFF"\n"); */
-   /* printf(GREY17"FooBar"OFF"\n"); */
-   /* printf(GREY18"FooBar"OFF"\n"); */
-   /*  */
-   /* printf(BG_BLACK"FooBar"OFF"\n"); */
-   /* printf(BG_BRTBLACK"FooBar"OFF"\n"); */
-   /* printf(BG_RED"FooBar"OFF"\n"); */
-   /* printf(BG_BRTRED"FooBar"OFF"\n"); */
-   /* printf(BG_GREEN"FooBar"OFF"\n"); */
-   /* printf(BG_BRTGREEN"FooBar"OFF"\n"); */
-   /* printf(BG_YELLOW"FooBar"OFF"\n"); */
-   /* printf(BG_BRTYELLOW"FooBar"OFF"\n"); */
-   /* printf(BG_BLUE"FooBar"OFF"\n"); */
-   /* printf(BG_BRTBLUE"FooBar"OFF"\n"); */
-   /* printf(BG_MAGENTA"FooBar"OFF"\n"); */
-   /* printf(BG_BRTMAGENTA"FooBar"OFF"\n"); */
-   /* printf(BG_CYAN"FooBar"OFF"\n"); */
-   /* printf(BG_BRTCYAN"FooBar"OFF"\n"); */
-   /* printf(BG_WHITE"FooBar"OFF"\n"); */
-   /* printf(BG_BRTWHITE"FooBar"OFF"\n"); */
-   /*  */
-   /* printf(BG_GREY10"FooBar"OFF"\n"); */
-   /* printf(BG_GREY11"FooBar"OFF"\n"); */
-   /* printf(BG_GREY12"FooBar"OFF"\n"); */
-   /* printf(BG_GREY13"FooBar"OFF"\n"); */
-   /* printf(BG_GREY14"FooBar"OFF"\n"); */
-   /* printf(BG_GREY15"FooBar"OFF"\n"); */
-   /* printf(BG_GREY16"FooBar"OFF"\n"); */
-   /* printf(BG_GREY17"FooBar"OFF"\n"); */
-   /* printf(BG_GREY18"FooBar"OFF"\n"); */
-   /*  */
-   /* printf(CLR(58)"Text with Color number"OFF"\n"); */
-   /* printf(RGB(55,134,129)"Text with RGB Color"OFF"\n"); */
-   /*  */
-   /* printf(BG_CLR(58)"Background with Color number"OFF"\n"); */
-   /* printf(BG_RGB(55,134,129)"Background with RGB Color"OFF"\n"); */
+
+   // escape colors <<<
+   if((demo == _ALL_) || (demo == _ESCCOLOR_))
+   {
+      printf(BOLD"Foo"NOBOLD"Bar"OFF"\n");
+      printf(DIM"Foo"NODIM"Bar"OFF"\n");
+      printf(ITALIC"Foo"NOITALIC"Bar"OFF"\n");
+      printf(UNDERLINE"Foo"NOUNDERLINE"Bar"OFF"\n");
+      printf(BLINK"Foo"NOBLINK"Bar"OFF"\n");
+      printf(REVERSE"Foo"NOREVERSE"Bar"OFF"\n");
+      printf(INVISIBLE"Foo"NOINVISIBLE"Bar"OFF"\n");
+
+      printf(BLACK"FooBar"OFF"\n");
+      printf(BRTBLACK"FooBar"OFF"\n");
+      printf(RED"FooBar"OFF"\n");
+      printf(BRTRED"FooBar"OFF"\n");
+      printf(GREEN"FooBar"OFF"\n");
+      printf(BRTGREEN"FooBar"OFF"\n");
+      printf(YELLOW"FooBar"OFF"\n");
+      printf(BRTYELLOW"FooBar"OFF"\n");
+      printf(BLUE"FooBar"OFF"\n");
+      printf(BRTBLUE"FooBar"OFF"\n");
+      printf(MAGENTA"FooBar"OFF"\n");
+      printf(BRTMAGENTA"FooBar"OFF"\n");
+      printf(CYAN"FooBar"OFF"\n");
+      printf(BRTCYAN"FooBar"OFF"\n");
+      printf(WHITE"FooBar"OFF"\n");
+      printf(BRTWHITE"FooBar"OFF"\n");
+
+      printf(GREY10"FooBar"OFF"\n");
+      printf(GREY11"FooBar"OFF"\n");
+      printf(GREY12"FooBar"OFF"\n");
+      printf(GREY13"FooBar"OFF"\n");
+      printf(GREY14"FooBar"OFF"\n");
+      printf(GREY15"FooBar"OFF"\n");
+      printf(GREY16"FooBar"OFF"\n");
+      printf(GREY17"FooBar"OFF"\n");
+      printf(GREY18"FooBar"OFF"\n");
+
+      printf(BG_BLACK"FooBar"OFF"\n");
+      printf(BG_BRTBLACK"FooBar"OFF"\n");
+      printf(BG_RED"FooBar"OFF"\n");
+      printf(BG_BRTRED"FooBar"OFF"\n");
+      printf(BG_GREEN"FooBar"OFF"\n");
+      printf(BG_BRTGREEN"FooBar"OFF"\n");
+      printf(BG_YELLOW"FooBar"OFF"\n");
+      printf(BG_BRTYELLOW"FooBar"OFF"\n");
+      printf(BG_BLUE"FooBar"OFF"\n");
+      printf(BG_BRTBLUE"FooBar"OFF"\n");
+      printf(BG_MAGENTA"FooBar"OFF"\n");
+      printf(BG_BRTMAGENTA"FooBar"OFF"\n");
+      printf(BG_CYAN"FooBar"OFF"\n");
+      printf(BG_BRTCYAN"FooBar"OFF"\n");
+      printf(BG_WHITE"FooBar"OFF"\n");
+      printf(BG_BRTWHITE"FooBar"OFF"\n");
+
+      printf(BG_GREY10"FooBar"OFF"\n");
+      printf(BG_GREY11"FooBar"OFF"\n");
+      printf(BG_GREY12"FooBar"OFF"\n");
+      printf(BG_GREY13"FooBar"OFF"\n");
+      printf(BG_GREY14"FooBar"OFF"\n");
+      printf(BG_GREY15"FooBar"OFF"\n");
+      printf(BG_GREY16"FooBar"OFF"\n");
+      printf(BG_GREY17"FooBar"OFF"\n");
+      printf(BG_GREY18"FooBar"OFF"\n");
+
+      printf(CLR(58)"FooBar"OFF"\n");
+      printf(RGB(55,134,129)"FooBar"OFF"\n");
+
+      printf(BG_CLR(58)"FooBar"OFF"\n");
+      printf(BG_RGB(55,134,129)"FooBar"OFF"\n");
+   }
+   // >>>
 
    /* printf("Foo"CRS_SAVE CRS_PUT(4,40)"Bar"CRS_LOAD"BAR\n"); */
    /* printf("FooBar\n"); */
