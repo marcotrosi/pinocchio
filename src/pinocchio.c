@@ -143,7 +143,7 @@ string u2s(unsigned long long int x) // <<<
    return Buffer;
 } // >>>
 
-string f2s(long double x) // <<<
+string f2s(long double x, size_t fp) // <<<
 {
    string Buffer = (string)malloc(BUFFERSIZE*sizeof(char));
 
@@ -152,7 +152,14 @@ string f2s(long double x) // <<<
       return NULL;
    }
 
-   snprintf(Buffer, BUFFERSIZE, "%LF", x);
+   if(fp != NO_LIMIT)
+   {
+      snprintf(Buffer, BUFFERSIZE, "%LF", x);
+   }
+   else
+   {
+      snprintf(Buffer, BUFFERSIZE, "%LF", x);
+   }
 
    return Buffer;
 } // >>>

@@ -7,7 +7,7 @@ ifeq (${NOCOLOR},true)
 DEVNULL=> /dev/null
 endif
 
-all: demo
+all: cln tst
 
 dir:
 	mkdir -p bld doc

@@ -56,6 +56,7 @@ size_t int_scount(string s, string ss/*, size_t start, size_t end*/);
 // TODO make BUFFERSIZE setable from commandline
 #define BUFFERSIZE 1024
 #define NO_RESULT SIZE_MAX
+#define NO_LIMIT SIZE_MAX
 #define MAX_LEN (SIZE_MAX - 1U)
 
 #define COUNT_ARGS_HLP(aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,ba,bb,bc,bd,be,bf,bg,bh,bi,bj,bk,ca,cb,cc,cd,ce,cf,cg,ch,ci,cj,ck,da,db,dc,dd,de,df,dg,dh,di,dj,dk,ea,eb,ec,ed,ee,ef,eg,eh,ei,ej,ek,fa,fb,fc,fd,fe,ff,fg,fh,fi,fj,fk,ga,gb,gc,gd,ge,gf,gg,gh,gi,gj,gk,ha,hb,hc,hd,he,hf,hg,hh,hi,hj,hk,ia,ib,ic,id,ie,if,ig,ih,ii,ij,ik,ja,jb,jc,jd,je,jf,jg,jh,ji,jj,jk,ka,kb,kc,kd,ke,kf,kg,kh,ki,kj,kk,cnt,...) cnt

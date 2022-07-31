@@ -18,65 +18,70 @@ Most functions are actually macros that wrap a function, which allowed me to get
 parameters. The following table provides this information. You can also see in this table which
 functions allocate new memory, which means that you have to store the returned address to be able to
 `free()` them later. Some functions work directly on the string and don't allocate or re-allocate memory.
+It is also listed if the object of interest is already implemented, tested and documented.
 
-| Name                    | Type                      | Memory    | Description                                                       |
-|-------------------------|---------------------------|-----------|-------------------------------------------------------------------|
-| [str](#str)             | function                  | malloc    | create string from string literal or string "objects"             |
-| [strfmt](#strfmt)       | function                  | malloc    | create string from format string                                  |
-| [freestr](#freestr)     | function wrapping macro   | -         | free allocated memory                                             |
-| [len](#len)             | function                  | -         | get string length                                                 |
-| [append](#append)       | function wrapping macro   | realloc   | append to string                                                  |
-| [prepend](#prepend)     | function wrapping macro   | realloc   | prepend to string                                                 |
-| [join](#join)           | function wrapping macro   | malloc    | join strings                                                      |
-| [glue](#glue)           | function wrapping macro   | malloc    | join strings with a glue string                                   |
-| [rep](#rep)             | function wrapping macro   | malloc    | repeat string with an optional separator string                   |
-| [left](#left)           | function wrapping macro   | malloc    | align string left to width with optional fill character           |
-| [center](#center)       | function wrapping macro   | malloc    | center string to width with optional fill character               |
-| [right](#right)         | function wrapping macro   | malloc    | align string right to width with optional fill character          |
-| [sub](#sub)             | function wrapping macro   | malloc    | get substring                                                     |
-| [lower](#lower)         | function                  | -         | convert all characters to lower case                              |
-| [upper](#upper)         | function                  | -         | convert all characters to upper case                              |
-| [rev](#rev)             | function                  | -         | reverse string                                                    |
-| [strip](#strip)         | function wrapping macro   | -         | strip string left and right                                       |
-| [lstrip](#lstrip)       | function wrapping macro   | -         | strip string left                                                 |
-| [rstrip](#rstrip)       | function wrapping macro   | -         | strip string right                                                |
-| [cindex](#cindex)       | function wrapping macro   | -         | get index of character position in string                         |
-| [ccount](#ccount)       | function wrapping macro   | -         | count number of given character in string                         |
-| [creplace](#creplace)   | function wrapping macro   | -         | replace character in string with a given character                |
-| i2s                     | function                  | malloc    | convert signed integer to string                                  |
-| u2s                     | function                  | malloc    | convert unsigned integer to string                                |
-| f2s                     | function                  | malloc    | convert float to string                                           |
-| c2s                     | function                  | malloc    | convert character to string                                       |
-| b2s                     | function                  | malloc    | convert boolean to string                                         |
-| x2s                     | function                  | malloc    | convert hex value to string                                       |
-| p2s                     | function wrapping macro   | malloc    |                                                                   |
-| a2s                     | function wrapping macro   | malloc    |                                                                   |
-| s2i                     | function wrapping macro   | -         | convert string to integer                                         |
-| s2u                     | function wrapping macro   | -         | convert string to unsigned integer                                |
-| s2lli                   | function wrapping macro   | -         | convert string to long long integer                               |
-| s2llu                   | function wrapping macro   | -         | convert string to long long unsigned integer                      |
-| s2f                     | function wrapping macro   | -         | convert string to float                                           |
-| s2d                     | function wrapping macro   | -         | convert string to double                                          |
-| s2ld                    | function wrapping macro   | -         | convert string to long double                                     |
-| print                   | function wrapping macro   | -         | print strings                                                     |
-| iprint                  | function wrapping macro   | -         | print integers                                                    |
-| scount                  |                           |           |                                                                   |
-| index                   |                           |           |                                                                   |
-| replace                 |                           |           |                                                                   |
-| compare                 |                           |           |                                                                   |
-| find                    |                           |           |                                                                   |
-| match                   |                           |           |                                                                   |
-| substitute              |                           |           |                                                                   |
-| show                    |                           |           | show \n \t ...                                                    |
-| protect                 |                           |           | make regex safe                                                   |
-| split                   |                           |           |                                                                   |
-| [hasChar](#haschar)     | comparison wrapping macro | -         | checks if string contains a given character                       |
-| [hasString](#hasstring) | comparison wrapping macro | -         | checks if string contains a given string                          |
-| cinsert                 |                           |           |                                                                   |
-| sinsert/insert?         |                           |           |                                                                   |
-| equal/isequal           |                           |           |                                                                   |
-| contains/containss      |                           |           |                                                                   |
-| contains/containsc      |                           |           |                                                                   |
+| Name                    | Impl | Test | Doc | Demo | Type                      | Memory    | Description                                                       |
+|-------------------------|------|------|-----|------|---------------------------|-----------|-------------------------------------------------------------------|
+| [str](#str)             | yes  | no   | yes |      | function                  | malloc    | create string from string literal or string "objects"             |
+| [strfmt](#strfmt)       | yes  | no   | yes |      | function                  | malloc    | create string from format string                                  |
+| [freestr](#freestr)     | yes  | no   | yes |      | function wrapping macro   | -         | free allocated memory                                             |
+| [len](#len)             | yes  | no   | yes |      | function                  | -         | get string length                                                 |
+| [append](#append)       | yes  | no   | yes |      | function wrapping macro   | realloc   | append to string                                                  |
+| [prepend](#prepend)     | yes  | no   | yes |      | function wrapping macro   | realloc   | prepend to string                                                 |
+| [join](#join)           | yes  | no   | yes |      | function wrapping macro   | malloc    | join strings                                                      |
+| [glue](#glue)           | yes  | no   | yes |      | function wrapping macro   | malloc    | join strings with a glue string                                   |
+| [rep](#rep)             | yes  | no   | yes |      | function wrapping macro   | malloc    | repeat string with an optional separator string                   |
+| [left](#left)           | yes  | no   | yes |      | function wrapping macro   | malloc    | align string left to width with optional fill character           |
+| [center](#center)       | yes  | no   | yes |      | function wrapping macro   | malloc    | center string to width with optional fill character               |
+| [right](#right)         | yes  | no   | yes |      | function wrapping macro   | malloc    | align string right to width with optional fill character          |
+| [sub](#sub)             | yes  | no   | yes |      | function wrapping macro   | malloc    | get substring                                                     |
+| [lower](#lower)         | yes  | no   | yes |      | function                  | -         | convert all characters to lower case                              |
+| [upper](#upper)         | yes  | no   | yes |      | function                  | -         | convert all characters to upper case                              |
+| [rev](#rev)             | yes  | no   | yes |      | function                  | -         | reverse string                                                    |
+| [strip](#strip)         | yes  | no   | yes |      | function wrapping macro   | -         | strip string left and right                                       |
+| [lstrip](#lstrip)       | yes  | no   | yes |      | function wrapping macro   | -         | strip string left                                                 |
+| [rstrip](#rstrip)       | yes  | no   | yes |      | function wrapping macro   | -         | strip string right                                                |
+| [cindex](#cindex)       | yes  | yes  | no  |      | function wrapping macro   | -         | get index of character position in string                         |
+| [ccount](#ccount)       | yes  | yes  | no  |      | function wrapping macro   | -         | count number of given character in string                         |
+| [creplace](#creplace)   | yes  | yes  | no  |      | function wrapping macro   | -         | replace character in string with a given character                |
+| i2s                     | yes  | no   | no  |      | function                  | malloc    | convert signed integer to string                                  |
+| u2s                     | yes  | no   | no  |      | function                  | malloc    | convert unsigned integer to string                                |
+| f2s                     | yes  | no   | no  |      | function                  | malloc    | convert float to string                                           |
+| c2s                     | yes  | no   | no  |      | function                  | malloc    | convert character to string                                       |
+| b2s                     | yes  | no   | no  |      | function                  | malloc    | convert boolean to string                                         |
+| x2s                     | yes  | no   | no  |      | function                  | malloc    | convert hex value to string                                       |
+| p2s                     | yes  | no   | no  |      | function wrapping macro   | malloc    |                                                                   |
+| a2s                     | yes  | no   | no  |      | function wrapping macro   | malloc    | convert address to string                                         |
+| s2i                     | yes  | no   | no  |      | function wrapping macro   | -         | convert string to integer                                         |
+| s2u                     | yes  | no   | no  |      | function wrapping macro   | -         | convert string to unsigned integer                                |
+| s2lli                   | yes  | no   | no  |      | function wrapping macro   | -         | convert string to long long integer                               |
+| s2llu                   | yes  | no   | no  |      | function wrapping macro   | -         | convert string to long long unsigned integer                      |
+| s2f                     | yes  | no   | no  |      | function wrapping macro   | -         | convert string to float                                           |
+| s2d                     | yes  | no   | no  |      | function wrapping macro   | -         | convert string to double                                          |
+| s2ld                    | yes  | no   | no  |      | function wrapping macro   | -         | convert string to long double                                     |
+| print                   | yes  | no   | no  |      | function wrapping macro   | -         | print strings                                                     |
+| iprint                  | yes  | no   | no  |      | function wrapping macro   | -         | print integers                                                    |
+| scount                  | no   | no   | no  |      |                           |           |                                                                   |
+| index                   | no   | no   | no  |      |                           |           |                                                                   |
+| replace                 | no   | no   | no  |      |                           |           |                                                                   |
+| compare                 | no   | no   | no  |      |                           |           |                                                                   |
+| find                    | no   | no   | no  |      |                           |           |                                                                   |
+| match                   | no   | no   | no  |      |                           |           |                                                                   |
+| substitute              | no   | no   | no  |      |                           |           |                                                                   |
+| show                    | no   | no   | no  |      |                           |           | show \n \t ...                                                    |
+| protect                 | no   | no   | no  |      |                           |           | make regex safe                                                   |
+| split                   | no   | no   | no  |      |                           |           |                                                                   |
+| [hasChar](#haschar)     | yes  | no   | no  |      | comparison wrapping macro | -         | checks if string contains a given character                       |
+| [hasString](#hasstring) | yes  | no   | no  |      | comparison wrapping macro | -         | checks if string contains a given string                          |
+| cinsert                 | no   | no   | no  |      |                           |           |                                                                   |
+| sinsert/insert?         | no   | no   | no  |      |                           |           |                                                                   |
+| equal/isequal           | no   | no   | no  |      |                           |           |                                                                   |
+| contains/containss      | no   | no   | no  |      |                           |           |                                                                   |
+| contains/containsc      | no   | no   | no  |      |                           |           |                                                                   |
+| CLR                     | no   | no   | yes |      |                           |           |                                                                   |
+| BG_CLR                  | no   | no   | yes |      |                           |           |                                                                   |
+| RGB                     | no   | no   | yes |      |                           |           |                                                                   |
+| BG_RGB                  | no   | no   | yes |      |                           |           |                                                                   |
 
 
 # Reference

@@ -26,6 +26,9 @@ enum DEMO
    _CINDEX_,
    _CCOUNT_,
    _CREPLACE_,
+   _I2S_,
+   _U2S_,
+   _F2S_,
    _ESCCOLOR_,
    _LAST_
 };
@@ -55,6 +58,9 @@ char* FUNC[] =
    "cindex",
    "ccount",
    "creplace",
+   "i2s",
+   "u2s",
+   "f2s",
    "esccolor",
    NULL
 };
@@ -81,9 +87,23 @@ int main(int argc, char **argv)
       demo = Name2Enum(argv[1]);
       if(demo == _LAST_)
       {
-         printf("no demo for '%s'\n", argv[1]);
-         exit(0);
+         printf("no demo for '%s'.\n", argv[1]);
+         exit(2);
       }
+   }
+   else if(argc == 1)
+   {
+         printf("no demo name given. listing available names.\n");
+         for(int i=0; FUNC[i] != NULL ;i++)
+         {
+            printf(" • %s\n",FUNC[i]);
+         }
+         exit(0);
+   }
+   else
+   {
+         printf("too many args. select one.\n");
+         exit(3);
    }
 
    // str <<<
@@ -477,24 +497,62 @@ int main(int argc, char **argv)
    }
    // >>>
 
-   /* iprint(5,0,-2,1323,282474); */
-   /* string M = i2s(-456747844848); */
-   /* string N = u2s(94567478448480); */
+   // i2s <<<
+   if((demo == _ALL_) || (demo == _I2S_))
+   {
+      print("\n::. demo i2s() .::");
+      printf("string AJ = i2s(-123);\n");
+      printf("print(AJ);\n");
+      printf("free(AJ);\n");
+      print(":::::::. prints .::::::");
+      string AJ = i2s(-123);
+      print(AJ);
+      free(AJ);
+   }
+   // >>>
+
+   // u2s <<<
+   if((demo == _ALL_) || (demo == _U2S_))
+   {
+      print("\n::. demo u2s() .::");
+      printf("string AK = u2s(123);\n");
+      printf("print(AK);\n");
+      printf("free(AK);\n");
+      print(":::::::. prints .::::::");
+      string AK = i2s(123);
+      print(AK);
+      free(AK);
+   }
+   // >>>
+
+   // f2s <<<
+   if((demo == _ALL_) || (demo == _F2S_))
+   {
+      print("\n::. demo f2s() .::");
+      printf("string AL = f2s(123.456);\n");
+      printf("print(AL);\n");
+      printf("free(AL);\n");
+      print(":::::::. prints .::::::");
+      string AL = f2s(123.456);
+      print(AL);
+      free(AL);
+   }
+   // >>>
+
    /* string O = f2s(9456747.8448480); */
    /* string P = c2s('x'); */
    /* string Q = b2s(false); */
    /* string R = p2s(A); */
    /* string S = a2s(A); */
-   /* iprint(int_scount(C, "oc")); */
-   /* iprint(scount(C, "k")); */
-   /* iprint(ccount(C, 'k')); */
    /* string T = x2s(-1); */
-   /*  */
    /* printf("%lli\n", s2lli(M)); */
    /* printf("%llu\n", s2llu(N)); */
    /* printf("%LF\n" , s2ld(O) ); */
    /* printf("%c\n"  , P[0]    ); */
-   /*  */
+   /* iprint(5,0,-2,1323,282474); */
+   /* iprint(int_scount(C, "oc")); */
+   /* iprint(scount(C, "k")); */
+   /* iprint(ccount(C, 'k')); */
    /* if(hasString(C, "kk")) */
    /* { */
    /*    printf("yes\n"); */
